@@ -45,22 +45,6 @@
       background: var(--c-primary); color: var(--c-white); border-color: var(--c-primary);
     }
 
-    .media-hero-img {
-      height: 400px; overflow: hidden; border-radius: var(--radius-lg); margin-top: 0;
-      position: relative;
-    }
-    .media-hero-img img { width: 100%; height: 100%; object-fit: cover; }
-    .media-hero-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,31,30,.7) 0%, transparent 60%);
-    }
-    .media-hero-img-caption {
-      position: absolute; bottom: 28px; left: 28px; right: 28px;
-      color: white;
-    }
-    .media-hero-img-caption h3 { font-size: 1.4rem; }
-    .media-hero-img-caption p { font-size: .875rem; opacity: .8; margin-top: 6px; }
-
     @media (max-width: 768px) {
       .founders__grid { grid-template-columns: 1fr; }
     }
@@ -119,19 +103,7 @@
 ════════════════════════════════════════════ -->
 <section class="section media">
   <div class="container">
-    <div class="reveal">
-      <div class="media-hero-img">
-        <img src="https://wamawtravel.com/wp-content/uploads/2022/01/pexels-trang-doan-1024248-scaled.jpg" alt="Alberto Mendiola, CEO de Wamaw Travel Group" loading="lazy" />
-        <div class="media-hero-img-overlay"></div>
-        <div class="media-hero-img-caption">
-          <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-primary-light);margin-bottom:8px">Destacado · Tres60.Travel · Marzo 2025</div>
-          <h3>"Nuevas tecnologías y especialización: el futuro de las agencias de viajes"</h3>
-          <p>Alberto Mendiola, CEO de Wamaw Travel Group, habla sobre la transformación digital del sector y el rol de la especialización.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="media-filter reveal" style="margin-top:48px;margin-bottom:0">
+    <div class="media-filter reveal" style="margin-bottom:0">
       <span class="label" style="margin-bottom:0">Todas las apariciones</span>
     </div>
 
@@ -139,9 +111,6 @@
 
       <!-- Article 1 -->
       <div class="media-card reveal">
-        <div class="media-card__img">
-          <img src="https://wamawtravel.com/wp-content/uploads/2022/01/pexels-fauxels-3183150-1-scaled.jpg" alt="Tres60.Travel" loading="lazy" />
-        </div>
         <div class="media-card__body">
           <div class="media-card__meta">
             <span class="media-card__source">Tres60.Travel</span>
@@ -157,9 +126,6 @@
 
       <!-- Article 2 -->
       <div class="media-card reveal reveal-delay-1">
-        <div class="media-card__img">
-          <img src="https://wamawtravel.com/wp-content/uploads/2022/01/pexels-fauxels-3183202-scaled.jpg" alt="Hosteltur" loading="lazy" />
-        </div>
         <div class="media-card__body">
           <div class="media-card__meta">
             <span class="media-card__source">Hosteltur</span>
@@ -175,9 +141,6 @@
 
       <!-- Article 3 -->
       <div class="media-card reveal reveal-delay-2">
-        <div class="media-card__img">
-          <img src="https://wamawtravel.com/wp-content/uploads/2022/01/pexels-riciardus-301930-scaled.jpg" alt="Evento Plus" loading="lazy" />
-        </div>
         <div class="media-card__body">
           <div class="media-card__meta">
             <span class="media-card__source">Evento Plus</span>
