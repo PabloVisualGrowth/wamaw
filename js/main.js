@@ -173,12 +173,84 @@
     });
   }
 
+  /* ── CTA Modal ── */
+  function initCtaModal() {
+    const overlay = document.getElementById('ctaModal');
+    if (!overlay) return;
+
+    // Show once per session
+    if (!sessionStorage.getItem('wamaw_cta_shown')) {
+      setTimeout(function () {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }, 900);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      sessionStorage.setItem('wamaw_cta_shown', '1');
+    }
+
+    const closeBtn = document.getElementById('ctaClose');
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // Close on backdrop click
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Form submit
+    const form = document.getElementById('ctaLeadForm');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const content = document.getElementById('ctaFormContent');
+        const success = document.getElementById('ctaSuccess');
+        if (content) content.style.display = 'none';
+        if (success) success.style.display = 'block';
+        setTimeout(closeModal, 2800);
+      });
+    }
+
+    // MagicCard mouse tracking
+    const card = document.getElementById('magicCard');
+    if (!card) return;
+    const border = card.querySelector('.magic-card__border');
+    const glow   = card.querySelector('.magic-card__glow');
+
+    card.addEventListener('pointermove', function (e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const gradient = `radial-gradient(260px circle at ${x}px ${y}px, #1E90D6, #0D3580, #dee3ea 100%)`;
+      if (border) border.style.background = gradient;
+      if (glow)   {
+        glow.style.background = `radial-gradient(260px circle at ${x}px ${y}px, rgba(30,144,214,.13), transparent 100%)`;
+        glow.style.opacity = '1';
+      }
+    });
+
+    function resetMagic() {
+      if (border) border.style.background = '';
+      if (glow)   glow.style.opacity = '0';
+    }
+    card.addEventListener('pointerleave', resetMagic);
+    card.addEventListener('pointerenter', resetMagic);
+  }
+
   /* ── Init all ── */
   document.addEventListener('DOMContentLoaded', function () {
     initReveal();
     initSmoothAnchors();
     initCounters();
     initActiveNav();
+    initCtaModal();
   });
 
   // Fallback for already-loaded DOM
@@ -187,5 +259,6 @@
     initSmoothAnchors();
     initCounters();
     initActiveNav();
+    initCtaModal();
   }
 })();

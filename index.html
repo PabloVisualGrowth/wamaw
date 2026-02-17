@@ -35,7 +35,14 @@
       <a href="contactanos.html">Contáctanos</a>
     </div>
     <div class="nav__cta">
-      <a href="contactanos.html" class="btn btn-primary btn-sm">Habla con nosotros</a>
+      <a href="contactanos.html" class="btn-hover" style="padding:8px 18px;font-size:.875rem">
+        <span class="btn-hover__dot"></span>
+        <span class="btn-hover__label">Habla con nosotros</span>
+        <span class="btn-hover__label-hover">
+          Habla con nosotros
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
       <button class="nav__hamburger" id="hamburger" aria-label="Abrir menú">
         <span></span><span></span><span></span>
       </button>
@@ -79,9 +86,13 @@
         Combinamos tecnología de vanguardia con atención personal 24h para que tu empresa se mueva sin fricciones. Más de 3 años gestionando viajes corporativos, incentivos y eventos con resultados medibles.
       </p>
       <div class="hero__actions">
-        <a href="contactanos.html" class="btn btn-primary btn-lg">
-          Solicitar propuesta
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="contactanos.html" class="btn-hover btn-hover--dark btn-lg">
+          <span class="btn-hover__dot"></span>
+          <span class="btn-hover__label">Solicitar propuesta</span>
+          <span class="btn-hover__label-hover">
+            Solicitar propuesta
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
         </a>
         <a href="#servicios" class="btn btn-white btn-lg">Ver servicios</a>
       </div>
@@ -117,11 +128,6 @@
       <div class="trust__item">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E90D6" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         Servicio 24h
-      </div>
-      <div class="trust__divider"></div>
-      <div class="trust__item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E90D6" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        100% Remota · España
       </div>
     </div>
   </div>
@@ -293,16 +299,11 @@
       </div>
       <div class="why-card reveal reveal-delay-1">
         <div class="why-card__num">02</div>
-        <h3>Modelo 100% remoto y ágil</h3>
-        <p>Sin oficinas físicas, sin burocracia innecesaria. Nuestro equipo trabaja de forma remota para responderte en cualquier momento y lugar, con reuniones mensuales para mantener la cohesión.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-2">
-        <div class="why-card__num">03</div>
         <h3>Sostenibilidad con métricas reales</h3>
         <p>No basta con decir que eres sostenible. Te ofrecemos métricas concretas del impacto ambiental de cada viaje para que tu empresa pueda tomar decisiones conscientes y reportar con datos reales.</p>
       </div>
-      <div class="why-card reveal reveal-delay-3">
-        <div class="why-card__num">04</div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-card__num">03</div>
         <h3>Tarifas negociadas, sin sorpresas</h3>
         <p>Acceso a tarifas preferentes en aerolíneas, cadenas hoteleras y proveedores de movilidad. Facturación centralizada, conciliación automática e informes de gestión a tu medida.</p>
       </div>
@@ -552,5 +553,68 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- ═══════════════════════════════════════════
+     CTA MODAL — Lead capture (shows once per session)
+════════════════════════════════════════════ -->
+<div id="ctaModal" class="cta-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="ctaModalTitle">
+  <div id="magicCard" class="magic-card">
+    <div class="magic-card__border"></div>
+    <div class="magic-card__inner">
+      <div class="magic-card__glow"></div>
+      <div class="magic-card__content">
+        <button id="ctaClose" class="cta-modal__close" aria-label="Cerrar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+
+        <div id="ctaFormContent">
+          <div class="cta-modal__header">
+            <span class="label" style="display:inline-flex;margin-bottom:16px">Sin compromiso</span>
+            <h2 id="ctaModalTitle" style="margin-bottom:12px">Cuéntanos qué necesita<br>tu empresa</h2>
+            <p style="margin-bottom:0;font-size:.9375rem">Te preparamos una propuesta personalizada en menos de 24h.</p>
+          </div>
+
+          <form id="ctaLeadForm" novalidate>
+            <div class="cta-modal__row">
+              <div class="form__field cta-modal__field">
+                <input type="text" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form__field cta-modal__field">
+                <input type="text" name="empresa" placeholder="Tu empresa" required />
+              </div>
+            </div>
+            <div class="form__field cta-modal__field">
+              <input type="email" name="email" placeholder="Email corporativo" required />
+            </div>
+            <div class="form__field cta-modal__field" style="margin-bottom:20px">
+              <select name="servicio" style="width:100%;padding:12px 16px;border:1.5px solid #e5e7eb;border-radius:8px;font-family:var(--font-body);font-size:.9375rem;color:var(--c-dark);background:var(--c-white);outline:none;cursor:pointer">
+                <option value="">¿Qué servicio te interesa?</option>
+                <option value="corporate">Wamaw Corporate — Viajes de negocio</option>
+                <option value="mice">Wamaw MICE — Eventos e incentivos</option>
+                <option value="sport">Wamaw Sport — Turismo deportivo</option>
+                <option value="todo">Varios / No lo sé aún</option>
+              </select>
+            </div>
+            <a href="contactanos.html" class="btn-hover" style="display:flex;justify-content:center;width:100%" onclick="document.getElementById('ctaLeadForm').dispatchEvent(new Event('submit'))">
+              <span class="btn-hover__dot"></span>
+              <span class="btn-hover__label">Solicitar propuesta</span>
+              <span class="btn-hover__label-hover">
+                Solicitar propuesta
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+          </form>
+        </div>
+
+        <div id="ctaSuccess" class="cta-modal__success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+          <h3>¡Perfecto!</h3>
+          <p style="color:var(--c-gray)">Te redirigimos a nuestro formulario completo para que podamos prepararte la mejor propuesta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
