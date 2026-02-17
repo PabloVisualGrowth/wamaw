@@ -3,7 +3,7 @@
    ============================================================ */
 
 /* ── Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,800;0,900;1,300;1,400&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 
 /* ── Tokens ── */
 :root {
@@ -19,8 +19,8 @@
   --c-white:        #ffffff;
   --c-accent:       #ff6b35;
 
-  --font-head: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', sans-serif;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
 
   --radius-sm:  8px;
   --radius-md:  16px;
@@ -40,9 +40,11 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 400;
   color: var(--c-dark);
   background: var(--c-white);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -58,12 +60,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .text-center { text-align: center; }
 
 /* ── Typography ── */
-h1,h2,h3,h4,h5 { font-family: var(--font-head); line-height: 1.2; font-weight: 700; }
-h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -0.01em; }
-h2 { font-size: clamp(1.875rem, 3.5vw, 2.75rem); letter-spacing: -0.005em; }
-h3 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); }
-h4 { font-size: 1.0625rem; font-weight: 600; }
-p  { color: var(--c-gray); line-height: 1.75; }
+h1,h2,h3,h4,h5 {
+  font-family: var(--font-head);
+  line-height: 1.1;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 1.875rem); }
+h4 { font-size: 1.125rem; font-weight: 700; }
+p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line-height: 1.75; }
 
 .label {
   display: inline-flex; align-items: center; gap: 6px;
