@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contáctanos — Wamaw Travel Group</title>
+  <meta name="description" content="Habla con el equipo de Wamaw Travel Group. Solicita una propuesta a medida para los viajes corporativos y eventos de tu empresa." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" />
+  <style>
+    /* Extra styles for contact page */
+    .map-placeholder {
+      width: 100%; height: 280px;
+      background: linear-gradient(135deg, var(--c-primary-pale) 0%, #d0f0ee 100%);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--c-primary); font-weight: 600; font-size: 1rem;
+      border: 1px dashed var(--c-primary-light);
+      gap: 10px; margin-top: 32px;
+    }
+    .map-placeholder svg { width: 24px; height: 24px; }
+    .faq { background: var(--c-white); }
+    .faq__list { max-width: 720px; margin: 48px auto 0; }
+    .faq-item {
+      border-bottom: 1px solid #f0f0f0; padding: 0;
+    }
+    .faq-item summary {
+      padding: 22px 0; font-weight: 600; font-size: .9375rem; color: var(--c-dark);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      list-style: none; user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+'; font-size: 1.4rem; color: var(--c-primary); line-height: 1;
+      transition: var(--transition); flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p { padding: 0 0 22px; color: var(--c-gray); font-size: .9rem; line-height: 1.75; }
+    .success-msg {
+      display: none; background: var(--c-primary-pale); border: 1px solid var(--c-primary-light);
+      color: var(--c-primary-dark); border-radius: var(--radius-md);
+      padding: 16px 20px; font-weight: 600; margin-top: 16px; font-size: .9rem;
+      align-items: center; gap: 10px;
+    }
+    .success-msg.show { display: flex; }
+    .success-msg svg { width: 20px; height: 20px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav class="nav nav--scrolled" id="navbar">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group" />
+    </a>
+    <div class="nav__links">
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#nosotros">Así somos</a>
+      <a href="medios.html">Medios</a>
+      <a href="contactanos.html">Contáctanos</a>
+    </div>
+    <div class="nav__cta">
+      <a href="contactanos.html" class="btn btn-primary btn-sm">Habla con nosotros</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="nav__mobile" id="mobileNav">
+  <button class="nav__mobile-close" id="mobileClose" aria-label="Cerrar menú">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="index.html#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="index.html#nosotros" onclick="closeMobile()">Así somos</a>
+  <a href="medios.html">Medios</a>
+  <a href="contactanos.html">Contáctanos</a>
+  <a href="contactanos.html" class="btn btn-primary">Habla con nosotros</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE HERO
+════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="container">
+    <span class="label" style="display:inline-flex;margin-bottom:20px">Contáctanos</span>
+    <h1>Cuéntanos qué necesita tu empresa</h1>
+    <p>Sin compromiso. Sin formularios interminables. Solo una conversación para ver cómo podemos ayudarte a mover tu negocio mejor.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════ -->
+<section class="section contact">
+  <div class="container">
+    <div class="contact__grid">
+
+      <!-- Info -->
+      <div class="contact__info reveal">
+        <span class="label">Información de contacto</span>
+        <h2 style="font-size:1.75rem">Estamos siempre cerca</h2>
+        <p>Escríbenos, llámanos o síguenos en redes. Nuestro equipo responde en el menor tiempo posible. Para urgencias, disponemos de atención 24h.</p>
+
+        <div class="contact__info-list">
+          <div class="contact__info-item">
+            <div class="contact__info-item-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span><a href="mailto:info@wamawtravel.com" style="color:var(--c-primary)">info@wamawtravel.com</a></span>
+            </div>
+          </div>
+          <div class="contact__info-item">
+            <div class="contact__info-item-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <strong>Horario de atención</strong>
+              <span>Lunes a viernes, 9h – 19h (urgencias 24h)</span>
+            </div>
+          </div>
+          <div class="contact__info-item">
+            <div class="contact__info-item-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>Modelo de trabajo</strong>
+              <span>100% remoto · España</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px">
+          <h4 style="margin-bottom:14px;font-size:.875rem;letter-spacing:.05em;text-transform:uppercase;color:var(--c-gray)">Síguenos en redes</h4>
+          <div class="contact__social">
+            <a href="https://instagram.com/wamawtravel" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+            </a>
+            <a href="https://facebook.com/wamawtravel" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com/wamawtravel" target="_blank" rel="noopener" aria-label="Twitter / X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Equipo 100% remoto — trabajamos desde toda España
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="reveal reveal-delay-2">
+        <div class="form">
+          <h3 class="form__title">Solicita tu propuesta</h3>
+          <p class="form__sub">Cuéntanos sobre tu empresa y tu necesidad. Te responderemos en menos de 24h hábiles.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form__row">
+              <div class="form__field">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form__field">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__field">
+                <label for="email">Email corporativo *</label>
+                <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+              </div>
+              <div class="form__field">
+                <label for="empresa">Empresa *</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" required />
+              </div>
+            </div>
+
+            <div class="form__field">
+              <label for="servicio">¿Qué servicio te interesa?</label>
+              <select id="servicio" name="servicio">
+                <option value="">Selecciona un servicio</option>
+                <option value="corporate">Wamaw Corporate — Viajes de negocio</option>
+                <option value="mice">Wamaw MICE — Eventos e incentivos</option>
+                <option value="sport">Wamaw Sport — Turismo deportivo</option>
+                <option value="todo">Varios servicios / No lo sé aún</option>
+              </select>
+            </div>
+
+            <div class="form__field">
+              <label for="viajeros">Número aproximado de viajeros / asistentes al año</label>
+              <select id="viajeros" name="viajeros">
+                <option value="">Selecciona una opción</option>
+                <option value="1-10">1 – 10</option>
+                <option value="11-50">11 – 50</option>
+                <option value="51-200">51 – 200</option>
+                <option value="200+">Más de 200</option>
+              </select>
+            </div>
+
+            <div class="form__field">
+              <label for="mensaje">Cuéntanos más *</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Describe brevemente tu necesidad: tipo de viajes, destinos habituales, fecha del evento, o cualquier cosa que consideres relevante..." required></textarea>
+            </div>
+
+            <div class="form__check">
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <label for="privacy">He leído y acepto la <a href="https://wamawtravel.com/politica-de-privacidad/" target="_blank" rel="noopener">Política de Privacidad</a> y el tratamiento de mis datos para gestionar mi solicitud.</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+              Enviar solicitud
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+
+            <div class="success-msg" id="successMsg">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              ¡Mensaje enviado! Te responderemos en menos de 24h hábiles.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+<section class="section faq">
+  <div class="container text-center">
+    <div class="reveal">
+      <span class="label">Preguntas frecuentes</span>
+      <h2>Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq__list">
+      <details class="faq-item reveal">
+        <summary>¿Cuánto cuesta trabajar con Wamaw Travel Group?</summary>
+        <p>Nuestro modelo de fees varía según el volumen y el tipo de servicio. Ofrecemos tarifas competitivas con acceso a precios negociados que generalmente compensan con creces cualquier honorario. Contacta con nosotros y haremos un análisis sin compromiso.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Tienen oficina física? ¿Cómo trabajáis?</summary>
+        <p>Somos una agencia 100% remota, lanzada en 2022. Nuestro equipo trabaja desde diferentes puntos de España con reuniones mensuales presenciales. Esto nos permite ser más ágiles, eficientes y dar un servicio disponible 24h sin depender de horarios de oficina.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Qué pasa si tengo una urgencia fuera del horario de oficina?</summary>
+        <p>Disponemos de servicio de emergencias 24 horas, los 365 días del año. Ante cualquier imprevisto de viaje (cancelación, pérdida de equipaje, cambio de vuelo), siempre habrá alguien de nuestro equipo disponible para ayudarte.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Gestionáis viajes internacionales?</summary>
+        <p>Sí. Gestionamos tanto viajes nacionales como internacionales: vuelos, hoteles, alquiler de vehículos, visados, traslados y cualquier servicio de movilidad que tu empresa necesite, en cualquier destino del mundo.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Podéis gestionar eventos para muchos asistentes?</summary>
+        <p>A través de Wamaw MICE organizamos desde pequeños meetings de equipo hasta congresos y eventos de incentivo para cientos de personas. Nos encargamos de la logística completa: venue, alojamiento, traslados, catering y experiencias.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Ofrecéis informes de sostenibilidad?</summary>
+        <p>Sí. Una de nuestras señas de identidad es el compromiso con la sostenibilidad. Proporcionamos métricas detalladas del impacto ambiental de los viajes de tu empresa para que puedas tomar decisiones informadas y reportar con datos reales a tu comité o stakeholders.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA SECTION
+════════════════════════════════════════════ -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-section__inner">
+      <div class="reveal">
+        <h2>¿Prefieres hablar directamente?</h2>
+        <p>Escríbenos un email y te respondemos en el menor tiempo posible. Somos personas, no bots.</p>
+      </div>
+      <div class="cta-section__actions reveal reveal-delay-2">
+        <a href="mailto:info@wamawtravel.com" class="btn btn-primary btn-lg">
+          info@wamawtravel.com
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        </a>
+        <a href="index.html" class="btn btn-white btn-lg">Volver al inicio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group" />
+        </a>
+        <p class="footer__brand-desc">Nos sentirás siempre cerca. Tu agencia de viajes corporativos y MICE que combina tecnología y trato humano para que tu empresa se mueva mejor.</p>
+        <div class="footer__social">
+          <a href="https://instagram.com/wamawtravel" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+          </a>
+          <a href="https://facebook.com/wamawtravel" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://twitter.com/wamawtravel" target="_blank" rel="noopener" aria-label="Twitter / X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Servicios</h5>
+        <ul>
+          <li><a href="index.html#servicios">Wamaw Corporate</a></li>
+          <li><a href="index.html#servicios">Wamaw MICE</a></li>
+          <li><a href="index.html#servicios">Wamaw Sport</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="index.html#nosotros">Así somos</a></li>
+          <li><a href="medios.html">Medios</a></li>
+          <li><a href="contactanos.html">Contáctanos</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="mailto:info@wamawtravel.com">info@wamawtravel.com</a></li>
+          <li><a href="https://instagram.com/wamawtravel" target="_blank" rel="noopener">@wamawtravel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__bottom-copy">© 2026 Wamaw Travel Group. Todos los derechos reservados.</p>
+      <div class="footer__bottom-links">
+        <a href="https://wamawtravel.com/politica-de-privacidad/" target="_blank" rel="noopener">Política de Privacidad</a>
+        <a href="https://wamawtravel.com/aviso-legal/" target="_blank" rel="noopener">Aviso Legal</a>
+        <a href="https://wamawtravel.com/politica-de-proteccion-de-datos/" target="_blank" rel="noopener">Protección de Datos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Form submission
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    const privacy = form.querySelector('#privacy');
+    if (!privacy.checked) {
+      privacy.style.outline = '2px solid red';
+      return;
+    }
+    // Simulate submission (replace with real endpoint)
+    const btn = form.querySelector('[type=submit]');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.style.display = 'none';
+      document.getElementById('successMsg').classList.add('show');
+      form.reset();
+    }, 1200);
+  });
+</script>
+</body>
+</html>
