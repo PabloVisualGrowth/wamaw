@@ -19,13 +19,13 @@
       gap: 10px; margin-top: 32px;
     }
     .map-placeholder svg { width: 24px; height: 24px; }
-    .faq { background: var(--c-white); }
+    .faq { background: transparent; }
     .faq__list { max-width: 720px; margin: 48px auto 0; }
     .faq-item {
-      border-bottom: 1px solid #f0f0f0; padding: 0;
+      border-bottom: 1px solid rgba(255,255,255,.08); padding: 0;
     }
     .faq-item summary {
-      padding: 22px 0; font-weight: 600; font-size: .9375rem; color: var(--c-dark);
+      padding: 22px 0; font-weight: 600; font-size: .9375rem; color: var(--c-white);
       cursor: pointer; display: flex; justify-content: space-between; align-items: center;
       list-style: none; user-select: none;
     }
@@ -38,7 +38,7 @@
     .faq-item p { padding: 0 0 22px; color: var(--c-gray); font-size: .9rem; line-height: 1.75; }
     .success-msg {
       display: none; background: var(--c-primary-pale); border: 1px solid var(--c-primary-light);
-      color: var(--c-primary-dark); border-radius: var(--radius-md);
+      color: var(--c-primary-light); border-radius: var(--radius-md);
       padding: 16px 20px; font-weight: 600; margin-top: 16px; font-size: .9rem;
       align-items: center; gap: 10px;
     }

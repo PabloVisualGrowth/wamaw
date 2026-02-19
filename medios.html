@@ -22,16 +22,16 @@
       flex-direction: column;
       gap: 14px;
       border-radius: 16px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--c-border);
       padding: 20px;
-      background: var(--c-white);
+      background: var(--c-dark-surface);
       transition: var(--transition);
       text-decoration: none;
       color: inherit;
     }
     .tweet-card:hover {
-      border-color: var(--c-primary-light);
-      box-shadow: 0 8px 40px rgba(30,144,214,.14);
+      border-color: var(--c-border-bright);
+      box-shadow: 0 8px 40px rgba(30,144,214,.2);
       transform: translateY(-4px);
     }
     .tweet-card__header {
@@ -46,16 +46,16 @@
     }
     .tweet-card__avatar {
       width: 44px; height: 44px; border-radius: 50%;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--c-border);
       display: flex; align-items: center; justify-content: center;
       font-weight: 800; font-size: .8rem;
       flex-shrink: 0; overflow: hidden;
     }
-    .tweet-card__avatar--t3   { background: #dbeafe; color: #1d4ed8; }
-    .tweet-card__avatar--h    { background: #fef3c7; color: #b45309; }
-    .tweet-card__avatar--ep   { background: #f0fdf4; color: #166534; }
+    .tweet-card__avatar--t3   { background: rgba(30,144,214,.2); color: var(--c-primary-light); }
+    .tweet-card__avatar--h    { background: rgba(13,53,128,.3);  color: var(--c-primary-light); }
+    .tweet-card__avatar--ep   { background: rgba(21,120,186,.2); color: var(--c-primary-light); }
     .tweet-card__meta { display: flex; flex-direction: column; gap: 1px; }
-    .tweet-card__name { font-weight: 700; font-size: .9375rem; color: var(--c-dark); line-height: 1.2; }
+    .tweet-card__name { font-weight: 700; font-size: .9375rem; color: var(--c-white); line-height: 1.2; }
     .tweet-card__handle { font-size: .8125rem; color: var(--c-gray); }
     .tweet-card__date-badge {
       font-size: .75rem; color: var(--c-gray);
@@ -68,7 +68,7 @@
     .tweet-card__title {
       font-family: var(--font-head);
       font-size: 1rem; font-weight: 700;
-      color: var(--c-dark); line-height: 1.4;
+      color: var(--c-white); line-height: 1.4;
     }
     .tweet-card__text {
       font-family: var(--font-body);
@@ -76,7 +76,7 @@
     }
     .tweet-card__footer {
       display: flex; align-items: center; justify-content: space-between;
-      padding-top: 12px; border-top: 1px solid #f1f5f9;
+      padding-top: 12px; border-top: 1px solid rgba(255,255,255,.07);
       font-size: .8125rem;
     }
     .tweet-card__by { color: var(--c-gray); }
@@ -92,13 +92,13 @@
     @media (max-width: 640px)  { .tweet-grid { grid-template-columns: 1fr; } }
 
     /* ── Combined Founders + Quotes Box ── */
-    .founders-wrap { background: var(--c-gray-light); }
+    .founders-wrap { background: transparent; }
     .founders-box {
-      background: var(--c-white);
+      background: var(--c-dark-surface);
       border-radius: 20px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--c-border);
       overflow: hidden;
-      box-shadow: 0 4px 48px rgba(0,0,0,.08);
+      box-shadow: 0 4px 48px rgba(0,0,0,.4);
     }
     .founders-box__hero { width: 100%; height: 400px; overflow: hidden; }
     .founders-box__hero img {
@@ -113,13 +113,13 @@
       margin-top: 10px; color: var(--c-gray);
       font-size: .95rem; line-height: 1.7; max-width: 600px;
     }
-    .founders-box__divider { height: 1px; background: #f1f5f9; margin: 0 56px; }
+    .founders-box__divider { height: 1px; background: rgba(255,255,255,.07); margin: 0 56px; }
     .founders-box__people { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
     .founders-box__person {
-      padding: 28px; border: 1px solid #eff0f2;
-      border-radius: var(--radius-md); background: var(--c-gray-light);
+      padding: 28px; border: 1px solid var(--c-border);
+      border-radius: var(--radius-md); background: rgba(255,255,255,.04);
     }
-    .founders-box__person-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--c-dark); }
+    .founders-box__person-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--c-white); }
     .founders-box__person-role { font-size: .875rem; color: var(--c-primary); font-weight: 600; margin: 4px 0 14px; }
     .founders-box__person-bio { font-size: .9rem; line-height: 1.75; color: var(--c-gray); margin-bottom: 16px; }
     .founders-box__person-linkedin {
@@ -130,11 +130,11 @@
     .founders-box__person-linkedin svg { width: 14px; height: 14px; }
     .founders-box__quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .founders-box__quote {
-      background: var(--c-primary-pale); border: 1px solid #dbeafe;
+      background: var(--c-primary-pale); border: 1px solid var(--c-border-bright);
       border-radius: var(--radius-md); padding: 32px;
     }
-    .founders-box__quote-icon { opacity: .25; margin-bottom: 14px; display: block; }
-    .founders-box__quote p { font-size: 1.05rem; color: var(--c-dark); font-style: italic; line-height: 1.75; margin-bottom: 20px; }
+    .founders-box__quote-icon { opacity: .4; margin-bottom: 14px; display: block; }
+    .founders-box__quote p { font-size: 1.05rem; color: rgba(255,255,255,.85); font-style: italic; line-height: 1.75; margin-bottom: 20px; }
     .founders-box__quote-author { display: flex; align-items: center; gap: 12px; }
     .founders-box__quote-avatar {
       width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
@@ -143,7 +143,7 @@
     }
     .founders-box__quote-avatar--am { background: linear-gradient(135deg,var(--c-primary),var(--c-primary-dark)); }
     .founders-box__quote-avatar--al { background: linear-gradient(135deg,var(--c-primary-dark),var(--c-dark)); }
-    .founders-box__quote-info strong { display: block; font-size: .9rem; font-weight: 700; color: var(--c-dark); }
+    .founders-box__quote-info strong { display: block; font-size: .9rem; font-weight: 700; color: var(--c-white); }
     .founders-box__quote-info span   { font-size: .8rem; color: var(--c-gray); }
 
     @media (max-width: 900px) {
@@ -387,7 +387,7 @@
 <!-- ═══════════════════════════════════════════
      AFFILIATIONS
 ════════════════════════════════════════════ -->
-<section class="section--sm trust" style="background:var(--c-white);border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0">
+<section class="section--sm trust">
   <div class="container">
     <p style="text-align:center;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--c-gray);margin-bottom:28px">Affiliaciones y reconocimientos</p>
     <div class="trust__inner">
