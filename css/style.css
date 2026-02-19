@@ -11,18 +11,18 @@
   --c-primary-dark:  #0D3580;
   --c-primary-mid:   #1578BA;
   --c-primary-light: #5BADD9;
-  --c-primary-pale:  rgba(30,144,214,.13);
-  --c-dark:          #07101f;
-  --c-dark-mid:      #0b1629;
-  --c-dark-surface:  rgba(255,255,255,.05);
-  --c-dark-surface2: rgba(255,255,255,.03);
-  --c-black:         #040810;
-  --c-gray:          rgba(255,255,255,.55);
-  --c-gray-light:    rgba(255,255,255,.04);
+  --c-dark:          #0d1b2e;
+  --c-dark-mid:      #122035;
+  --c-dark-surface:  rgba(255,255,255,.10);
+  --c-dark-surface2: rgba(255,255,255,.06);
+  --c-black:         #060f1c;
+  --c-gray:          rgba(255,255,255,.72);
+  --c-gray-light:    rgba(255,255,255,.07);
   --c-white:         #ffffff;
   --c-accent:        #ff6b35;
-  --c-border:        rgba(255,255,255,.09);
-  --c-border-bright: rgba(30,144,214,.35);
+  --c-border:        rgba(255,255,255,.15);
+  --c-border-bright: rgba(30,144,214,.45);
+  --c-primary-pale:  rgba(30,144,214,.16);
 
   --font-head: 'Inter', sans-serif;
   --font-body: 'Barlow', sans-serif;
@@ -62,11 +62,24 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 60% at 10% 35%,  rgba(30,144,214,.28) 0%, transparent 55%),
-    radial-gradient(ellipse 65% 75% at 90% 10%,  rgba(13,53,128,.50)  0%, transparent 52%),
-    radial-gradient(ellipse 55% 55% at 60% 90%,  rgba(21,120,186,.22) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 40% at 50% 50%,  rgba(91,173,217,.09) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 10% 35%,  rgba(30,144,214,.42) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 75% at 90% 10%,  rgba(13,53,128,.70)  0%, transparent 52%),
+    radial-gradient(ellipse 55% 55% at 60% 90%,  rgba(21,120,186,.35) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 50% 50%,  rgba(91,173,217,.16) 0%, transparent 60%),
     var(--c-dark);
+}
+
+/* ── Film grain texture ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: .06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23grain)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  background-repeat: repeat;
 }
 
 img { max-width: 100%; height: auto; display: block; }
