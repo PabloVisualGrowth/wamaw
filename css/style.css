@@ -12,8 +12,9 @@
   --c-primary-mid:  #1578BA;
   --c-primary-light:#5BADD9;
   --c-primary-pale: #EBF4FD;
-  --c-dark:         #0a0a0a;
-  --c-dark-mid:     #111827;
+  --c-dark:         #0C1E3D;
+  --c-dark-mid:     #162D5A;
+  --c-black:        #0a0a0a;
   --c-gray:         #6b7280;
   --c-gray-light:   #f3f4f6;
   --c-white:        #ffffff;
@@ -125,11 +126,11 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
   height: 72px;
 }
 .nav--scrolled {
-  background: rgba(0,0,0,.96);
+  background: rgba(10,10,10,.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 2px 24px rgba(0,0,0,.4);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 2px 24px rgba(0,0,0,.5);
 }
 .nav--scrolled .nav__links a { color: var(--c-white); }
 .nav--scrolled .nav__links a::after { background: var(--c-primary); }
@@ -274,7 +275,7 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
   border-radius: var(--radius-md); border: 1.5px solid var(--c-border);
   transition: var(--transition);
 }
-.intro__list-item:hover { border-color: var(--c-dark); box-shadow: var(--shadow-md); }
+.intro__list-item:hover { border-color: var(--c-primary-light); box-shadow: var(--shadow-md); }
 .intro__list-item-icon {
   width: 36px; height: 36px; flex-shrink: 0;
   background: var(--c-primary-pale); border-radius: 8px;
@@ -315,8 +316,8 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
 }
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.18);
-  border-color: var(--c-dark);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--c-primary-light);
 }
 .service-card__img { position: relative; height: 220px; overflow: hidden; }
 .service-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
@@ -400,9 +401,9 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
   border: 1.5px solid var(--c-border); border-radius: var(--radius-md);
   padding: 28px; transition: var(--transition);
   display: flex; flex-direction: column; gap: 16px;
-  border-top: 3px solid var(--c-dark);
+  border-top: 3px solid var(--c-black);
 }
-.press-card:hover { border-color: var(--c-dark); box-shadow: 0 8px 32px rgba(0,0,0,.12); }
+.press-card:hover { border-color: var(--c-primary-light); box-shadow: var(--shadow-md); }
 .press-card__source {
   font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   color: var(--c-primary);
@@ -521,9 +522,9 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
 .media-card {
   border: 1.5px solid var(--c-border); border-radius: var(--radius-md);
   overflow: hidden; transition: var(--transition); display: flex; flex-direction: column;
-  border-top: 3px solid var(--c-dark);
+  border-top: 3px solid var(--c-black);
 }
-.media-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,.15); transform: translateY(-6px); border-color: var(--c-dark); }
+.media-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); border-color: var(--c-primary-light); }
 .media-card__img { height: 200px; overflow: hidden; }
 .media-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .media-card:hover .media-card__img img { transform: scale(1.05); }
@@ -586,12 +587,12 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
   100% { background-position: 0% 50%; }
 }
 .aurora-text {
-  background-image: linear-gradient(135deg, #FF0080, #7928CA, #0070F3, #38bdf8, #FF0080);
+  background-image: linear-gradient(135deg, #1E90D6, #5BADD9, #ffffff, #38bdf8, #0070F3, #1E90D6);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: aurora 10s ease infinite;
+  animation: aurora 8s ease infinite;
   display: inline;
 }
 
@@ -798,9 +799,9 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
 .btn-hover:hover .btn-hover__label  { transform: translateX(40px); opacity: 0; }
 .btn-hover:hover .btn-hover__label-hover { opacity: 1; transform: translateX(-5px); }
 
-/* Dark variant fix: dot blanco → texto debe ser oscuro */
-.btn-hover--dark .btn-hover__label-hover { color: var(--c-dark); }
-.btn-hover--dark .btn-hover__label-hover svg { stroke: var(--c-dark); }
+/* Dark variant fix: dot blanco → texto en azul primario sobre fondo blanco */
+.btn-hover--dark .btn-hover__label-hover { color: var(--c-primary); }
+.btn-hover--dark .btn-hover__label-hover svg { stroke: var(--c-primary); }
 
 /* Primary variant: para fondos oscuros donde queremos fondo azul */
 .btn-hover--primary {
