@@ -1,299 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wamaw Travel en los medios — Prensa y apariciones | Wamaw Travel Group</title>
-  <meta name="description" content="Medios especializados como Hosteltur, Tres60.Travel y Evento Plus recogen la visión de Wamaw Travel Group sobre el futuro de los viajes corporativos y MICE en España." />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/png" href="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" />
-  <style>
-    /* ── Tweet-style Article Cards ── */
-    .tweet-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 40px;
-      align-items: start;
-    }
-    .tweet-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      border-radius: 16px;
-      border: 1px solid var(--c-border);
-      padding: 20px;
-      background: var(--c-dark-surface);
-      transition: var(--transition);
-      text-decoration: none;
-      color: inherit;
-    }
-    .tweet-card:hover {
-      border-color: var(--c-border-bright);
-      box-shadow: 0 8px 40px rgba(30,144,214,.2);
-      transform: translateY(-4px);
-    }
-    .tweet-card__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .tweet-card__author {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .tweet-card__avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 1px solid var(--c-border);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: .8rem;
-      flex-shrink: 0; overflow: hidden;
-    }
-    .tweet-card__avatar--t3   { background: rgba(30,144,214,.2); color: var(--c-primary-light); }
-    .tweet-card__avatar--h    { background: rgba(13,53,128,.3);  color: var(--c-primary-light); }
-    .tweet-card__avatar--ep   { background: rgba(21,120,186,.2); color: var(--c-primary-light); }
-    .tweet-card__meta { display: flex; flex-direction: column; gap: 1px; }
-    .tweet-card__name { font-weight: 700; font-size: .9375rem; color: var(--c-white); line-height: 1.2; }
-    .tweet-card__handle { font-size: .8125rem; color: var(--c-gray); }
-    .tweet-card__date-badge {
-      font-size: .75rem; color: var(--c-gray);
-      background: var(--c-gray-light); border-radius: 100px;
-      padding: 3px 10px; white-space: nowrap;
-    }
-    .tweet-card__body {
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .tweet-card__title {
-      font-family: var(--font-head);
-      font-size: 1rem; font-weight: 700;
-      color: var(--c-white); line-height: 1.4;
-    }
-    .tweet-card__text {
-      font-family: var(--font-body);
-      font-size: .9rem; line-height: 1.7; color: var(--c-gray);
-    }
-    .tweet-card__footer {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-top: 12px; border-top: 1px solid rgba(255,255,255,.07);
-      font-size: .8125rem;
-    }
-    .tweet-card__by { color: var(--c-gray); }
-    .tweet-card__link {
-      display: inline-flex; align-items: center; gap: 5px;
-      color: var(--c-primary); font-weight: 600;
-      transition: var(--transition);
-    }
-    .tweet-card__link:hover { gap: 8px; }
-    .tweet-card__link svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-    @media (max-width: 1024px) { .tweet-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 640px)  { .tweet-grid { grid-template-columns: 1fr; } }
-
-    /* ── Combined Founders + Quotes Box ── */
-    .founders-wrap { background: transparent; }
-    .founders-box {
-      background: var(--c-dark-surface);
-      border-radius: 20px;
-      border: 1px solid var(--c-border);
-      overflow: hidden;
-      box-shadow: 0 4px 48px rgba(0,0,0,.4);
-    }
-    .founders-box__hero { width: 100%; height: 400px; overflow: hidden; }
-    .founders-box__hero img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 30%;
-      display: block;
-    }
-    .founders-box__inner { padding: 52px 56px; }
-    .founders-box__section-head { margin-bottom: 36px; }
-    .founders-box__section-head h2 { margin-top: 8px; }
-    .founders-box__section-head p {
-      margin-top: 10px; color: var(--c-gray);
-      font-size: .95rem; line-height: 1.7; max-width: 600px;
-    }
-    .founders-box__divider { height: 1px; background: rgba(255,255,255,.07); margin: 0 56px; }
-    .founders-box__people { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-    .founders-box__person {
-      padding: 28px; border: 1px solid var(--c-border);
-      border-radius: var(--radius-md); background: rgba(255,255,255,.04);
-    }
-    .founders-box__person-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--c-white); }
-    .founders-box__person-role { font-size: .875rem; color: var(--c-primary); font-weight: 600; margin: 4px 0 14px; }
-    .founders-box__person-bio { font-size: .9rem; line-height: 1.75; color: var(--c-gray); margin-bottom: 16px; }
-    .founders-box__person-linkedin {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .875rem; font-weight: 600; color: var(--c-primary); transition: var(--transition);
-    }
-    .founders-box__person-linkedin:hover { gap: 10px; }
-    .founders-box__person-linkedin svg { width: 14px; height: 14px; }
-    .founders-box__quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .founders-box__quote {
-      background: var(--c-primary-pale); border: 1px solid var(--c-border-bright);
-      border-radius: var(--radius-md); padding: 32px;
-    }
-    .founders-box__quote-icon { opacity: .4; margin-bottom: 14px; display: block; }
-    .founders-box__quote p { font-size: 1.05rem; color: rgba(255,255,255,.85); font-style: italic; line-height: 1.75; margin-bottom: 20px; }
-    .founders-box__quote-author { display: flex; align-items: center; gap: 12px; }
-    .founders-box__quote-avatar {
-      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-weight: 700; font-size: .875rem;
-    }
-    .founders-box__quote-avatar--am { background: linear-gradient(135deg,var(--c-primary),var(--c-primary-dark)); }
-    .founders-box__quote-avatar--al { background: linear-gradient(135deg,var(--c-primary-dark),var(--c-dark)); }
-    .founders-box__quote-info strong { display: block; font-size: .9rem; font-weight: 700; color: var(--c-white); }
-    .founders-box__quote-info span   { font-size: .8rem; color: var(--c-gray); }
-
-    @media (max-width: 900px) {
-      .founders-box__inner   { padding: 36px 28px; }
-      .founders-box__divider { margin: 0 28px; }
-      .founders-box__hero    { height: 260px; }
-    }
-    @media (max-width: 640px) {
-      .founders-box__people { grid-template-columns: 1fr; }
-      .founders-box__quotes  { grid-template-columns: 1fr; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wamaw Travel en los medios — Prensa y apariciones</title>
+  <meta name="description" content="Medios especializados como Hosteltur, Tres60.Travel y Evento Plus recogen la visión de Wamaw Travel Group sobre el futuro de los viajes corporativos y MICE.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png">
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════════════ -->
-<nav class="nav nav--scrolled" id="navbar">
-  <div class="nav__inner">
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress"></div>
+
+<!-- Navigation -->
+<nav class="nav nav--scrolled" id="navbar" data-inner="true">
+  <div class="container nav__container">
     <a href="index.html" class="nav__logo">
-      <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group" />
+      <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group">
     </a>
-    <div class="nav__links">
-      <a href="index.html#servicios">Servicios</a>
+    <div class="nav__menu">
+      <a href="index.html#experiencias">Servicios</a>
       <a href="index.html#nosotros">Así somos</a>
       <a href="medios.html">Medios</a>
-      <a href="contactanos.html">Contáctanos</a>
-    </div>
-    <div class="nav__cta">
-      <a href="contactanos.html" class="btn-hover" style="padding:8px 18px;font-size:.875rem">
-        <span class="btn-hover__dot"></span>
-        <span class="btn-hover__label">Habla con nosotros</span>
-        <span class="btn-hover__label-hover">
-          Habla con nosotros
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
+      <a href="contactanos.html" class="nav__cta">
+        <span>Habla con nosotros</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </a>
-      <button class="nav__hamburger" id="hamburger" aria-label="Abrir menú">
-        <span></span><span></span><span></span>
-      </button>
     </div>
+    <button class="nav__hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- Mobile nav -->
-<div class="nav__mobile" id="mobileNav">
-  <button class="nav__mobile-close" id="mobileClose" aria-label="Cerrar menú">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu__close" id="menuClose" aria-label="Cerrar menú">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
   </button>
-  <a href="index.html#servicios" onclick="closeMobile()">Servicios</a>
-  <a href="index.html#nosotros" onclick="closeMobile()">Así somos</a>
-  <a href="medios.html">Medios</a>
-  <a href="contactanos.html">Contáctanos</a>
-  <a href="contactanos.html" class="btn btn-primary">Habla con nosotros</a>
+  <div class="mobile-menu__links">
+    <a href="index.html#experiencias">Servicios</a>
+    <a href="index.html#nosotros">Así somos</a>
+    <a href="medios.html">Medios</a>
+    <a href="contactanos.html" class="mobile-menu__cta">Habla con nosotros</a>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     PAGE HERO
-════════════════════════════════════════════ -->
+<!-- Page Hero -->
 <div class="page-hero">
   <div class="container">
-    <span class="label" style="display:inline-flex;margin-bottom:20px">En los medios</span>
+    <span class="section__label">En los medios</span>
     <h1>Wamaw Travel en los medios</h1>
     <p>Publicaciones especializadas del sector de viajes corporativos y MICE recogen nuestra visión sobre tecnología, sostenibilidad y el futuro de la movilidad empresarial.</p>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     FEATURED ARTICLE
-════════════════════════════════════════════ -->
-<section class="section media">
+<!-- Artículos de prensa -->
+<section class="section" style="background:var(--c-dark-2)">
   <div class="container">
-    <div class="media-filter reveal" style="margin-bottom:0">
-      <span class="label" style="margin-bottom:0">Todas las apariciones</span>
-    </div>
-
+    <div class="section__label reveal">Todas las apariciones</div>
     <div class="tweet-grid">
 
-      <!-- Article 1 — Tres60.Travel -->
       <a class="tweet-card reveal" href="https://tres60.travel/nuevas-tecnologias-y-especializacion-el-futuro-de-las-agencias-de-viajes-con-alberto-mendiola/" target="_blank" rel="noopener">
         <div class="tweet-card__header">
           <div class="tweet-card__author">
             <div class="tweet-card__avatar tweet-card__avatar--t3">T3</div>
-            <div class="tweet-card__meta">
-              <span class="tweet-card__name">Tres60.Travel</span>
-              <span class="tweet-card__handle">tres60.travel</span>
+            <div>
+              <div class="tweet-card__name">Tres60.Travel</div>
+              <div class="tweet-card__handle">tres60.travel</div>
             </div>
           </div>
-          <span class="tweet-card__date-badge">4 mar. 2025</span>
+          <span class="tweet-card__date">4 mar. 2025</span>
         </div>
-        <div class="tweet-card__body">
-          <div class="tweet-card__title">"Nuevas tecnologías y especialización: el futuro de las agencias de viajes con Alberto Mendiola"</div>
-          <p class="tweet-card__text">Alberto Mendiola, CEO de Wamaw Travel Group, analiza cómo la digitalización y la especialización están redefiniendo el modelo de agencia. La clave: combinar la tecnología más avanzada con el trato humano que los clientes corporativos siguen reclamando.</p>
-        </div>
+        <div class="tweet-card__title">"Nuevas tecnologías y especialización: el futuro de las agencias de viajes con Alberto Mendiola"</div>
+        <p class="tweet-card__text">Alberto Mendiola, CEO de Wamaw Travel Group, analiza cómo la digitalización y la especialización están redefiniendo el modelo de agencia. La clave: combinar la tecnología más avanzada con el trato humano que los clientes corporativos siguen reclamando.</p>
         <div class="tweet-card__footer">
           <span class="tweet-card__by">Por Gustavo Fares</span>
           <span class="tweet-card__link">
             Leer artículo
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
 
-      <!-- Article 2 — Hosteltur -->
       <a class="tweet-card reveal reveal-delay-1" href="https://www.hosteltur.com/168544_agencias-como-impulsar-nuevos-modelos-de-negocio-y-afrontar-la-sucesion.html" target="_blank" rel="noopener">
         <div class="tweet-card__header">
           <div class="tweet-card__author">
             <div class="tweet-card__avatar tweet-card__avatar--h">HT</div>
-            <div class="tweet-card__meta">
-              <span class="tweet-card__name">Hosteltur</span>
-              <span class="tweet-card__handle">hosteltur.com</span>
+            <div>
+              <div class="tweet-card__name">Hosteltur</div>
+              <div class="tweet-card__handle">hosteltur.com</div>
             </div>
           </div>
-          <span class="tweet-card__date-badge">25 feb. 2025</span>
+          <span class="tweet-card__date">25 feb. 2025</span>
         </div>
-        <div class="tweet-card__body">
-          <div class="tweet-card__title">"Agencias: cómo impulsar nuevos modelos de negocio y afrontar la sucesión"</div>
-          <p class="tweet-card__text">El sector debate las estrategias para que las agencias de viajes consoliden nuevos modelos de negocio y gestionen el relevo generacional. Wamaw Travel Group aporta su visión sobre especialización, tecnología y la importancia de mantener el contacto personal con el cliente.</p>
-        </div>
+        <div class="tweet-card__title">"Agencias: cómo impulsar nuevos modelos de negocio y afrontar la sucesión"</div>
+        <p class="tweet-card__text">El sector debate las estrategias para que las agencias de viajes consoliden nuevos modelos de negocio y gestionen el relevo generacional. Wamaw Travel Group aporta su visión sobre especialización y la importancia de mantener el contacto personal con el cliente.</p>
         <div class="tweet-card__footer">
           <span class="tweet-card__by">Por Carmen Porras</span>
           <span class="tweet-card__link">
             Leer artículo
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
 
-      <!-- Article 3 — Evento Plus -->
       <a class="tweet-card reveal reveal-delay-2" href="https://www.eventoplus.com/noticias/alejandro-martin-y-alberto-mendiola-fundan-wamaw-travel/" target="_blank" rel="noopener">
         <div class="tweet-card__header">
           <div class="tweet-card__author">
             <div class="tweet-card__avatar tweet-card__avatar--ep">EP</div>
-            <div class="tweet-card__meta">
-              <span class="tweet-card__name">Evento Plus</span>
-              <span class="tweet-card__handle">eventoplus.com</span>
+            <div>
+              <div class="tweet-card__name">Evento Plus</div>
+              <div class="tweet-card__handle">eventoplus.com</div>
             </div>
           </div>
-          <span class="tweet-card__date-badge">16 mar. 2022</span>
+          <span class="tweet-card__date">16 mar. 2022</span>
         </div>
-        <div class="tweet-card__body">
-          <div class="tweet-card__title">"Alejandro Martín y Alberto Mendiola fundan Wamaw Travel"</div>
-          <p class="tweet-card__text">Dos profesionales con una sólida trayectoria en viajes corporativos y MICE unen sus iniciales para crear Wamaw Travel Group, una agencia diseñada para ofrecer tecnología de vanguardia, atención personalizada 24h y un modelo sostenible de gestión de la movilidad empresarial.</p>
-        </div>
+        <div class="tweet-card__title">"Alejandro Martín y Alberto Mendiola fundan Wamaw Travel"</div>
+        <p class="tweet-card__text">Dos profesionales con una sólida trayectoria en viajes corporativos y MICE unen sus iniciales para crear Wamaw Travel Group, una agencia diseñada para ofrecer tecnología de vanguardia y atención personalizada 24h.</p>
         <div class="tweet-card__footer">
           <span class="tweet-card__by">Por Paula Rey</span>
           <span class="tweet-card__link">
             Leer artículo
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
@@ -302,65 +136,55 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOUNDERS + QUOTES (combined box)
-════════════════════════════════════════════ -->
-<section class="section founders-wrap">
+<!-- Founders Box -->
+<section class="section">
   <div class="container">
     <div class="founders-box reveal">
-
-      <!-- ── CABECERA: foto conjunta ── -->
       <div class="founders-box__hero">
-        <img src="img/big-wamaw800.webp" alt="Alberto Mendiola y Alejandro Martín — Wamaw Travel Group" loading="lazy" />
+        <img src="img/big-wamaw800.webp" alt="Alberto Mendiola y Alejandro Martín — Wamaw Travel Group" loading="lazy">
       </div>
 
-      <!-- ── SECCIÓN 1: Las personas detrás de Wamaw ── -->
       <div class="founders-box__inner">
         <div class="founders-box__section-head">
-          <span class="label">El equipo fundador</span>
+          <span class="section__label">El equipo fundador</span>
           <h2>Las personas detrás de Wamaw</h2>
           <p>El nombre Wamaw viene de las iniciales de sus fundadores. Dos profesionales con visión y pasión por los viajes corporativos.</p>
         </div>
         <div class="founders-box__people">
-
-          <!-- Alberto — izquierda -->
           <div class="founders-box__person">
             <div class="founders-box__person-name">Alberto Mendiola</div>
             <div class="founders-box__person-role">CEO & Co-fundador</div>
             <p class="founders-box__person-bio">Referente en la industria de los viajes corporativos en España. Alberto lidera la visión tecnológica y estratégica de Wamaw, apostando por un modelo de agencia del siglo XXI: sostenible, especializado y centrado en el cliente. Ha sido entrevistado por medios como Tres60.Travel y Hosteltur por su visión innovadora del sector.</p>
             <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" class="founders-box__person-linkedin">
               Ver perfil en LinkedIn
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
-
-          <!-- Alejandro — derecha -->
           <div class="founders-box__person">
             <div class="founders-box__person-name">Alejandro Martín</div>
             <div class="founders-box__person-role">Co-fundador</div>
             <p class="founders-box__person-bio">Junto a Alberto, Alejandro fundó Wamaw en 2022 con una misión clara: crear la agencia de viajes corporativos del futuro. Su expertise en MICE y en la gestión de eventos corporativos ha sido clave para posicionar a Wamaw como referente en el sector en solo tres años.</p>
             <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" class="founders-box__person-linkedin">
               Ver perfil en LinkedIn
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
-
         </div>
       </div>
 
       <div class="founders-box__divider"></div>
 
-      <!-- ── SECCIÓN 2: Nuestra visión del sector ── -->
       <div class="founders-box__inner">
         <div class="founders-box__section-head">
-          <span class="label">Lo que decimos</span>
+          <span class="section__label">Lo que decimos</span>
           <h2>Nuestra visión del sector</h2>
         </div>
         <div class="founders-box__quotes">
-
-          <!-- Cita Alberto — izquierda -->
           <div class="founders-box__quote">
-            <svg class="founders-box__quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            <svg class="founders-box__quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+            </svg>
             <p>"La nueva forma de moverse en el mundo nos obliga a trabajar con la más alta tecnología. Pero nunca a costa de perder el contacto humano."</p>
             <div class="founders-box__quote-author">
               <div class="founders-box__quote-avatar founders-box__quote-avatar--am">AM</div>
@@ -370,10 +194,11 @@
               </div>
             </div>
           </div>
-
-          <!-- Cita Alejandro — derecha -->
           <div class="founders-box__quote">
-            <svg class="founders-box__quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            <svg class="founders-box__quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+            </svg>
             <p>"Nuestro modelo es una apuesta clara por la personalización y el trato cercano al cliente, con un enfoque en sostenibilidad real y medible."</p>
             <div class="founders-box__quote-author">
               <div class="founders-box__quote-avatar founders-box__quote-avatar--al">AL</div>
@@ -383,64 +208,57 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     AFFILIATIONS
-════════════════════════════════════════════ -->
-<section class="section--sm trust">
+<!-- Trust -->
+<section class="trust-section">
   <div class="container">
-    <p style="text-align:center;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--c-gray);margin-bottom:28px">Affiliaciones y reconocimientos</p>
-    <div class="trust__inner">
-      <div class="trust__item">
-        <img src="https://wamawtravel.com/wp-content/uploads/2025/06/NdP-I-de-MICE-renueva-su-imagen-con-un-nuevo-logo.png" alt="I de MICE" style="height:44px" />
-        Miembro asociado I de MICE
+    <div class="trust-grid">
+      <div class="trust-item">
+        <img src="https://wamawtravel.com/wp-content/uploads/2025/06/NdP-I-de-MICE-renueva-su-imagen-con-un-nuevo-logo.png" alt="I de MICE">
+        <span>Miembro asociado I de MICE</span>
       </div>
-      <div class="trust__divider"></div>
-      <div class="trust__item">
-        <img src="https://wamawtravel.com/wp-content/uploads/2022/03/sello-codigo-etico-DEFINITIVO-20170710-RGB-PQ-modified.png" alt="Código Ético FENIN" style="height:44px" />
-        Código Ético FENIN
+      <div class="trust-item">
+        <img src="https://wamawtravel.com/wp-content/uploads/2022/03/sello-codigo-etico-DEFINITIVO-20170710-RGB-PQ-modified.png" alt="Código Ético FENIN">
+        <span>Código Ético FENIN</span>
       </div>
-      <div class="trust__divider"></div>
-      <div class="trust__item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c-primary)" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Agencia Asociada AVASA
+      <div class="trust-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Agencia Asociada AVASA</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     CTA SECTION
-════════════════════════════════════════════ -->
-<section class="section cta-section">
+<!-- CTA -->
+<section class="cta-section">
   <div class="container">
-    <div class="cta-section__inner">
-      <div class="reveal">
-        <h2>Cuéntanos qué necesita tu empresa</h2>
-        <p>¿Eres un medio y quieres hablar con nuestro equipo de comunicación? ¿O buscas un partner de confianza para la movilidad corporativa de tu empresa? Estamos cerca.</p>
+    <div class="cta-box reveal">
+      <div class="cta-box__content">
+        <h2 class="cta-box__title">Cuéntanos qué necesita tu empresa</h2>
+        <p class="cta-box__text">¿Eres un medio y quieres hablar con nuestro equipo? ¿O buscas un partner de confianza para la movilidad corporativa? Estamos cerca.</p>
       </div>
-      <div class="cta-section__actions reveal reveal-delay-2">
-        <a href="contactanos.html" class="btn-hover btn-hover--primary btn-lg">
-          <span class="btn-hover__dot"></span>
-          <span class="btn-hover__label">Solicitar una propuesta</span>
-          <span class="btn-hover__label-hover">
-            Solicitar una propuesta
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="cta-box__actions">
+        <a href="contactanos.html" class="btn-interactive btn-interactive--light">
+          <div class="btn-interactive__dot"></div>
+          <span class="btn-interactive__text">Solicitar propuesta</span>
+          <span class="btn-interactive__text-hover">
+            <span>Solicitar propuesta</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </a>
-        <a href="mailto:info@wamawtravel.com" class="btn-hover btn-hover--dark btn-lg">
-          <span class="btn-hover__dot"></span>
-          <span class="btn-hover__label">info@wamawtravel.com</span>
-          <span class="btn-hover__label-hover">
-            info@wamawtravel.com
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="mailto:info@wamawtravel.com" class="btn-interactive btn-interactive--outline-light">
+          <div class="btn-interactive__dot"></div>
+          <span class="btn-interactive__text">info@wamawtravel.com</span>
+          <span class="btn-interactive__text-hover">
+            <span>info@wamawtravel.com</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </a>
       </div>
@@ -448,63 +266,46 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════ -->
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <div class="footer__top">
-      <div class="footer__brand">
-        <a href="index.html" class="footer__logo">
-          <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group" />
-        </a>
-        <p class="footer__brand-desc">Nos sentirás siempre cerca. Tu agencia de viajes corporativos y MICE que combina tecnología y trato humano para que tu empresa se mueva mejor.</p>
+    <div class="footer__grid">
+      <div>
+        <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group" class="footer__logo">
+        <p class="footer__description">Nos sentirás siempre cerca. Tu agencia de viajes corporativos y MICE que combina tecnología y trato humano.</p>
         <div class="footer__social">
           <a href="https://instagram.com/wamawtravel" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
           </a>
           <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
           </a>
           <a href="https://facebook.com/wamawtravel" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a href="https://twitter.com/wamawtravel" target="_blank" rel="noopener" aria-label="Twitter / X">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
           </a>
         </div>
       </div>
-      <div class="footer__col">
-        <h5>Servicios</h5>
-        <ul>
-          <li><a href="index.html#servicios">Wamaw Corporate</a></li>
-          <li><a href="index.html#servicios">Wamaw MICE</a></li>
-          <li><a href="index.html#servicios">Wamaw Sport</a></li>
-        </ul>
+      <div class="footer__links">
+        <h4>Servicios</h4>
+        <a href="index.html#experiencias">Wamaw Corporate</a>
+        <a href="index.html#experiencias">Wamaw MICE</a>
+        <a href="index.html#experiencias">Wamaw Sport</a>
       </div>
-      <div class="footer__col">
-        <h5>Empresa</h5>
-        <ul>
-          <li><a href="index.html#nosotros">Así somos</a></li>
-          <li><a href="medios.html">Medios</a></li>
-          <li><a href="contactanos.html">Contáctanos</a></li>
-        </ul>
+      <div class="footer__links">
+        <h4>Empresa</h4>
+        <a href="index.html#nosotros">Así somos</a>
+        <a href="medios.html">Medios</a>
+        <a href="contactanos.html">Contáctanos</a>
       </div>
-      <div class="footer__col">
-        <h5>Contacto</h5>
-        <ul>
-          <li><a href="mailto:info@wamawtravel.com">info@wamawtravel.com</a></li>
-          <li><a href="https://instagram.com/wamawtravel" target="_blank" rel="noopener">@wamawtravel</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="footer__bottom-copy">© 2026 Wamaw Travel Group. Todos los derechos reservados.</p>
-      <div class="footer__bottom-links">
+      <div class="footer__links">
+        <h4>Legal</h4>
         <a href="https://wamawtravel.com/politica-de-privacidad/" target="_blank" rel="noopener">Política de Privacidad</a>
         <a href="https://wamawtravel.com/aviso-legal/" target="_blank" rel="noopener">Aviso Legal</a>
         <a href="https://wamawtravel.com/politica-de-proteccion-de-datos/" target="_blank" rel="noopener">Protección de Datos</a>
       </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 Wamaw Travel Group. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
