@@ -3,7 +3,7 @@
    ============================================================ */
 
 /* ── Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 
 /* ── Tokens ── */
 :root {
@@ -13,18 +13,18 @@
   --c-primary-light: #5BADD9;
   --c-dark:          #0d1b2e;
   --c-dark-mid:      #122035;
-  --c-dark-surface:  rgba(255,255,255,.10);
-  --c-dark-surface2: rgba(255,255,255,.06);
+  --c-dark-surface:  rgba(255,255,255,.13);
+  --c-dark-surface2: rgba(255,255,255,.08);
   --c-black:         #060f1c;
-  --c-gray:          rgba(255,255,255,.72);
-  --c-gray-light:    rgba(255,255,255,.07);
+  --c-gray:          rgba(255,255,255,.78);
+  --c-gray-light:    rgba(255,255,255,.09);
   --c-white:         #ffffff;
   --c-accent:        #ff6b35;
-  --c-border:        rgba(255,255,255,.15);
-  --c-border-bright: rgba(30,144,214,.45);
+  --c-border:        rgba(255,255,255,.22);
+  --c-border-bright: rgba(30,144,214,.55);
   --c-primary-pale:  rgba(30,144,214,.16);
 
-  --font-head: 'Inter', sans-serif;
+  --font-head: 'Barlow Condensed', sans-serif;
   --font-body: 'Barlow', sans-serif;
 
   --radius-sm:  8px;
@@ -96,15 +96,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ── Typography ── */
 h1,h2,h3,h4,h5 {
   font-family: var(--font-head);
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   color: var(--c-white);
 }
-h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
-h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
-h3 { font-size: clamp(1.25rem, 2.2vw, 1.625rem); }
-h4 { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.8rem, 6.5vw, 5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+h4 { font-size: 1.125rem; font-weight: 800; letter-spacing: 0.02em; }
 p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line-height: 1.75; }
 
 .label {
@@ -257,9 +258,9 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
   backdrop-filter: blur(8px);
 }
 .trust__inner { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
-.trust__item { display: flex; align-items: center; gap: 10px; font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.5); }
-.trust__item img { height: 32px; width: auto; transition: var(--transition); filter: brightness(0) invert(1); opacity: .45; }
-.trust__item img:hover { opacity: .9; }
+.trust__item { display: flex; align-items: center; gap: 10px; font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.78); }
+.trust__item img { height: 32px; width: auto; transition: var(--transition); opacity: .85; }
+.trust__item img:hover { opacity: 1; }
 .trust__divider { width: 1px; height: 28px; background: rgba(255,255,255,.1); }
 
 /* ── PAIN / INTRO ── */
@@ -562,8 +563,8 @@ p  { font-family: var(--font-body); font-weight: 400; color: var(--c-gray); line
 .footer__bottom-links a { font-size: .8rem; color: rgba(255,255,255,.3); transition: var(--transition); }
 .footer__bottom-links a:hover { color: rgba(255,255,255,.65); }
 .footer__badges { display: flex; align-items: center; gap: 16px; }
-.footer__badges img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: .4; transition: var(--transition); }
-.footer__badges img:hover { opacity: .8; }
+.footer__badges img { height: 36px; width: auto; opacity: .65; transition: var(--transition); }
+.footer__badges img:hover { opacity: 1; }
 
 /* ── PAGE HERO (inner pages) ── */
 .page-hero {
