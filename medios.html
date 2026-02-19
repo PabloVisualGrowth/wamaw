@@ -91,34 +91,69 @@
     @media (max-width: 1024px) { .tweet-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 640px)  { .tweet-grid { grid-template-columns: 1fr; } }
 
-    /* ── Founders ── */
-    .founders { background: var(--c-gray-light); }
-    .founders__grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 28px; margin-top: 48px;
+    /* ── Combined Founders + Quotes Box ── */
+    .founders-wrap { background: var(--c-gray-light); }
+    .founders-box {
+      background: var(--c-white);
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 4px 48px rgba(0,0,0,.08);
     }
-    .founder-card {
-      background: var(--c-white); border-radius: var(--radius-lg);
-      overflow: hidden; display: flex; flex-direction: column;
-      border: 1px solid #eff0f2; transition: var(--transition);
+    .founders-box__hero { width: 100%; height: 400px; overflow: hidden; }
+    .founders-box__hero img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      display: block;
     }
-    .founder-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-    .founder-card__img { height: 280px; overflow: hidden; }
-    .founder-card__img img { width: 100%; height: 100%; object-fit: cover; }
-    .founder-card__body { padding: 32px; }
-    .founder-card__name { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--c-dark); }
-    .founder-card__role { font-size: .875rem; color: var(--c-primary); font-weight: 600; margin: 4px 0 16px; }
-    .founder-card__bio { font-size: .9rem; line-height: 1.75; color: var(--c-gray); }
-    .founder-card__linkedin {
+    .founders-box__inner { padding: 52px 56px; }
+    .founders-box__section-head { margin-bottom: 36px; }
+    .founders-box__section-head h2 { margin-top: 8px; }
+    .founders-box__section-head p {
+      margin-top: 10px; color: var(--c-gray);
+      font-size: .95rem; line-height: 1.7; max-width: 600px;
+    }
+    .founders-box__divider { height: 1px; background: #f1f5f9; margin: 0 56px; }
+    .founders-box__people { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .founders-box__person {
+      padding: 28px; border: 1px solid #eff0f2;
+      border-radius: var(--radius-md); background: var(--c-gray-light);
+    }
+    .founders-box__person-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--c-dark); }
+    .founders-box__person-role { font-size: .875rem; color: var(--c-primary); font-weight: 600; margin: 4px 0 14px; }
+    .founders-box__person-bio { font-size: .9rem; line-height: 1.75; color: var(--c-gray); margin-bottom: 16px; }
+    .founders-box__person-linkedin {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 16px; font-size: .875rem; font-weight: 600; color: var(--c-primary);
-      transition: var(--transition);
+      font-size: .875rem; font-weight: 600; color: var(--c-primary); transition: var(--transition);
     }
-    .founder-card__linkedin:hover { gap: 10px; }
-    .founder-card__linkedin svg { width: 16px; height: 16px; }
+    .founders-box__person-linkedin:hover { gap: 10px; }
+    .founders-box__person-linkedin svg { width: 14px; height: 14px; }
+    .founders-box__quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .founders-box__quote {
+      background: var(--c-primary-pale); border: 1px solid #dbeafe;
+      border-radius: var(--radius-md); padding: 32px;
+    }
+    .founders-box__quote-icon { opacity: .25; margin-bottom: 14px; display: block; }
+    .founders-box__quote p { font-size: 1.05rem; color: var(--c-dark); font-style: italic; line-height: 1.75; margin-bottom: 20px; }
+    .founders-box__quote-author { display: flex; align-items: center; gap: 12px; }
+    .founders-box__quote-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: .875rem;
+    }
+    .founders-box__quote-avatar--am { background: linear-gradient(135deg,var(--c-primary),var(--c-primary-dark)); }
+    .founders-box__quote-avatar--al { background: linear-gradient(135deg,var(--c-primary-dark),var(--c-dark)); }
+    .founders-box__quote-info strong { display: block; font-size: .9rem; font-weight: 700; color: var(--c-dark); }
+    .founders-box__quote-info span   { font-size: .8rem; color: var(--c-gray); }
 
-    @media (max-width: 768px) {
-      .founders__grid { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .founders-box__inner   { padding: 36px 28px; }
+      .founders-box__divider { margin: 0 28px; }
+      .founders-box__hero    { height: 260px; }
+    }
+    @media (max-width: 640px) {
+      .founders-box__people { grid-template-columns: 1fr; }
+      .founders-box__quotes  { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -261,80 +296,90 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     KEY QUOTES
+     FOUNDERS + QUOTES (combined box)
 ════════════════════════════════════════════ -->
-<section class="section" style="background:var(--c-primary-pale);padding:80px 0">
+<section class="section founders-wrap">
   <div class="container">
-    <div class="text-center reveal" style="margin-bottom:48px">
-      <span class="label">Lo que decimos</span>
-      <h2>Nuestra visión del sector</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
-      <div style="background:white;border-radius:var(--radius-md);padding:36px;border:1px solid #eff0f2;" class="reveal">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)" style="margin-bottom:16px;opacity:.3"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <p style="font-size:1.05rem;color:var(--c-dark);font-style:italic;line-height:1.75;margin-bottom:20px">"La nueva forma de moverse en el mundo nos obliga a trabajar con la más alta tecnología. Pero nunca a costa de perder el contacto humano."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--c-primary),var(--c-primary-dark));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.875rem">AM</div>
-          <div>
-            <div style="font-weight:700;font-size:.9rem;color:var(--c-dark)">Alberto Mendiola</div>
-            <div style="font-size:.8rem;color:var(--c-gray)">CEO · Wamaw Travel Group</div>
-          </div>
-        </div>
-      </div>
-      <div style="background:white;border-radius:var(--radius-md);padding:36px;border:1px solid #eff0f2;" class="reveal reveal-delay-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)" style="margin-bottom:16px;opacity:.3"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <p style="font-size:1.05rem;color:var(--c-dark);font-style:italic;line-height:1.75;margin-bottom:20px">"Nuestro modelo es una apuesta clara por la personalización y el trato cercano al cliente, con un enfoque en sostenibilidad real y medible."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--c-primary-dark),var(--c-dark));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.875rem">AL</div>
-          <div>
-            <div style="font-weight:700;font-size:.9rem;color:var(--c-dark)">Alejandro Martín</div>
-            <div style="font-size:.8rem;color:var(--c-gray)">Co-fundador · Wamaw Travel Group</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="founders-box reveal">
 
-<!-- ═══════════════════════════════════════════
-     FOUNDERS
-════════════════════════════════════════════ -->
-<section class="section founders">
-  <div class="container">
-    <div class="text-center reveal" style="max-width:560px;margin:0 auto 0">
-      <span class="label">El equipo fundador</span>
-      <h2>Las personas detrás de Wamaw</h2>
-      <p style="margin-top:12px">El nombre Wamaw viene de las iniciales de sus fundadores. Dos profesionales con visión y pasión por los viajes corporativos.</p>
-    </div>
-    <div class="founders__grid">
-      <div class="founder-card reveal">
-        <div class="founder-card__img">
-          <img src="https://wamawtravel.com/wp-content/uploads/2022/01/pexels-fauxels-3183150-1-scaled.jpg" alt="Alberto Mendiola - CEO Wamaw" loading="lazy" />
+      <!-- ── CABECERA: foto conjunta ── -->
+      <div class="founders-box__hero">
+        <img src="img/big-wamaw800.webp" alt="Alberto Mendiola y Alejandro Martín — Wamaw Travel Group" loading="lazy" />
+      </div>
+
+      <!-- ── SECCIÓN 1: Las personas detrás de Wamaw ── -->
+      <div class="founders-box__inner">
+        <div class="founders-box__section-head">
+          <span class="label">El equipo fundador</span>
+          <h2>Las personas detrás de Wamaw</h2>
+          <p>El nombre Wamaw viene de las iniciales de sus fundadores. Dos profesionales con visión y pasión por los viajes corporativos.</p>
         </div>
-        <div class="founder-card__body">
-          <div class="founder-card__name">Alberto Mendiola</div>
-          <div class="founder-card__role">CEO & Co-fundador</div>
-          <p class="founder-card__bio">Referente en la industria de los viajes corporativos en España. Alberto lidera la visión tecnológica y estratégica de Wamaw, apostando por un modelo de agencia del siglo XXI: sostenible, especializado y centrado en el cliente. Ha sido entrevistado por medios como Tres60.Travel y Hosteltur por su visión innovadora del sector.</p>
-          <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" class="founder-card__linkedin">
-            Ver perfil en LinkedIn
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        <div class="founders-box__people">
+
+          <!-- Alberto — izquierda -->
+          <div class="founders-box__person">
+            <div class="founders-box__person-name">Alberto Mendiola</div>
+            <div class="founders-box__person-role">CEO & Co-fundador</div>
+            <p class="founders-box__person-bio">Referente en la industria de los viajes corporativos en España. Alberto lidera la visión tecnológica y estratégica de Wamaw, apostando por un modelo de agencia del siglo XXI: sostenible, especializado y centrado en el cliente. Ha sido entrevistado por medios como Tres60.Travel y Hosteltur por su visión innovadora del sector.</p>
+            <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" class="founders-box__person-linkedin">
+              Ver perfil en LinkedIn
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Alejandro — derecha -->
+          <div class="founders-box__person">
+            <div class="founders-box__person-name">Alejandro Martín</div>
+            <div class="founders-box__person-role">Co-fundador</div>
+            <p class="founders-box__person-bio">Junto a Alberto, Alejandro fundó Wamaw en 2022 con una misión clara: crear la agencia de viajes corporativos del futuro. Su expertise en MICE y en la gestión de eventos corporativos ha sido clave para posicionar a Wamaw como referente en el sector en solo tres años.</p>
+            <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" class="founders-box__person-linkedin">
+              Ver perfil en LinkedIn
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
         </div>
       </div>
-      <div class="founder-card reveal reveal-delay-1">
-        <div class="founder-card__img">
-          <img src="https://wamawtravel.com/wp-content/uploads/2022/01/pexels-fauxels-3184418-1-scaled.jpg" alt="Alejandro Martín - Co-fundador Wamaw" loading="lazy" />
+
+      <div class="founders-box__divider"></div>
+
+      <!-- ── SECCIÓN 2: Nuestra visión del sector ── -->
+      <div class="founders-box__inner">
+        <div class="founders-box__section-head">
+          <span class="label">Lo que decimos</span>
+          <h2>Nuestra visión del sector</h2>
         </div>
-        <div class="founder-card__body">
-          <div class="founder-card__name">Alejandro Martín</div>
-          <div class="founder-card__role">Co-fundador</div>
-          <p class="founder-card__bio">Junto a Alberto, Alejandro fundó Wamaw en 2022 con una misión clara: crear la agencia de viajes corporativos del futuro. Su expertise en MICE y en la gestión de eventos corporativos ha sido clave para posicionar a Wamaw como referente en el sector en solo tres años.</p>
-          <a href="https://linkedin.com/company/wamaw-travel-group" target="_blank" rel="noopener" class="founder-card__linkedin">
-            Ver perfil en LinkedIn
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        <div class="founders-box__quotes">
+
+          <!-- Cita Alberto — izquierda -->
+          <div class="founders-box__quote">
+            <svg class="founders-box__quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            <p>"La nueva forma de moverse en el mundo nos obliga a trabajar con la más alta tecnología. Pero nunca a costa de perder el contacto humano."</p>
+            <div class="founders-box__quote-author">
+              <div class="founders-box__quote-avatar founders-box__quote-avatar--am">AM</div>
+              <div class="founders-box__quote-info">
+                <strong>Alberto Mendiola</strong>
+                <span>CEO · Wamaw Travel Group</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cita Alejandro — derecha -->
+          <div class="founders-box__quote">
+            <svg class="founders-box__quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="var(--c-primary)"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            <p>"Nuestro modelo es una apuesta clara por la personalización y el trato cercano al cliente, con un enfoque en sostenibilidad real y medible."</p>
+            <div class="founders-box__quote-author">
+              <div class="founders-box__quote-avatar founders-box__quote-avatar--al">AL</div>
+              <div class="founders-box__quote-info">
+                <strong>Alejandro Martín</strong>
+                <span>Co-fundador · Wamaw Travel Group</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+
     </div>
   </div>
 </section>
