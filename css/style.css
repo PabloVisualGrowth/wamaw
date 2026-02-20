@@ -261,65 +261,76 @@ p  { line-height: 1.7; }
 .btn-lg { padding: 17px 36px; font-size: 1.05rem; }
 .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
 
-/* ── INTERACTIVE HOVER BUTTON — efecto InteractiveHoverButton ─ */
-/* Dot que expande, texto que sale a la derecha, overlay que entra desde la derecha */
+/* ── INTERACTIVE HOVER BUTTON — réplica exacta de InteractiveHoverButton ─
+   Fondo blanco + dot teal opaco que se expande hasta llenar el botón.
+   Texto sale a la derecha. Overlay (texto + flecha, blanco) entra desde la derecha.
+   ─────────────────────────────────────────────────────────────────────────── */
 .btn-hover {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
-  background: var(--c-primary);
-  color: var(--c-white);
-  padding: 14px 28px;
+  background: var(--c-white);          /* bg-background = blanco */
+  color: var(--c-gray-900);            /* texto oscuro sobre blanco */
+  padding: 12px 24px;
   border-radius: var(--radius-full);
   font-weight: 600;
   font-size: 0.95rem;
-  box-shadow: 0 4px 20px var(--c-primary-glow);
+  border: 1.5px solid var(--c-gray-300);
   cursor: pointer;
-  border: none;
   text-align: center;
+  transition: border-color 0.3s ease;
 }
+.btn-hover:hover {
+  border-color: var(--c-primary);
+}
+
+/* Contenedor frontal: dot + texto (no se mueve como conjunto) */
 .btn-hover__inner {
   display: flex;
   align-items: center;
   gap: 8px;
-  /* NO mueve el contenedor completo — solo el span se mueve */
 }
-/* Solo el texto sale hacia la derecha */
+
+/* Solo el SPAN de texto sale hacia la derecha — el dot se queda */
 .btn-hover__inner span {
   display: inline-block;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .btn-hover:hover .btn-hover__inner span {
-  transform: translateX(48px);
+  transform: translateX(48px);   /* translate-x-12 en Tailwind */
   opacity: 0;
 }
-/* El dot se expande para cubrir el botón */
+
+/* DOT teal opaco — se expande a scale(100.8) llenando el botón con color */
 .btn-hover__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--c-primary);        /* bg-primary = teal OPACO */
   flex-shrink: 0;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-hover:hover .btn-hover__dot {
-  transform: scale(150);
+  transform: scale(100.8);             /* llena el botón con teal */
 }
-/* Overlay entra desde la derecha */
+
+/* OVERLAY — texto blanco + flecha, entra desde la derecha */
 .btn-hover__overlay {
   position: absolute;
   inset: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transform: translateX(48px);
+  color: var(--c-white);               /* texto blanco sobre fondo teal */
+  transform: translateX(48px);         /* empieza fuera por la derecha */
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .btn-hover:hover .btn-hover__overlay {
-  transform: translateX(-5px);
+  transform: translateX(-5px);         /* -translate-x-1 aprox */
   opacity: 1;
 }
 .btn-hover__overlay svg {
@@ -480,11 +491,11 @@ p  { line-height: 1.7; }
   vertical-align: bottom;
   height: 1.1em;
 }
-/* Word rotate — efecto slide y + opacity como WordRotate de motion/react */
+/* Word rotate — translateY en % para que overflow:hidden funcione correctamente */
 .hero__rotate-word {
   display: block;
-  animation-duration: 0.25s;
-  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-fill-mode: both;
 }
 .hero__rotate-word.word-entering {
@@ -493,13 +504,14 @@ p  { line-height: 1.7; }
 .hero__rotate-word.word-exiting {
   animation-name: wordExit;
 }
+/* Usa % → relativo a la altura del propio elemento, siempre sale del wrapper */
 @keyframes wordEnter {
-  from { opacity: 0; transform: translateY(-50px); }
+  from { opacity: 0; transform: translateY(-110%); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes wordExit {
   from { opacity: 1; transform: translateY(0); }
-  to   { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 0; transform: translateY(110%); }
 }
 .hero__subtitle {
   color: rgba(255,255,255,.72);
