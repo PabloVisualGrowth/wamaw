@@ -21,15 +21,25 @@
       <!-- Globe Face (Fades out first) -->
       <div class="preloader__globe-wrap" id="globe-container">
         <canvas id="globe-canvas"></canvas>
-        <div class="preloader__logo" aria-label="Wamaw Logo"></div>
+        <div class="preloader__logo" aria-label="Wamaw Logo">
+          <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Logo"
+            class="preloader-logo-img">
+        </div>
       </div>
 
       <!-- Lead Capture CTA (Fades in after globe) -->
       <div class="preloader__cta is-hidden" id="preloader-cta">
-        <p>Déjanos tus datos y nos pondremos en contacto contigo lo antes posible.</p>
+        <h3 class="cta-heading">Déjanos tus datos y nos pondremos en contacto contigo lo antes posible.</h3>
         <form id="preloader-form" class="preloader__form">
-          <input type="text" placeholder="Tu nombre y empresa" required />
-          <input type="email" placeholder="Tu email profesional" required />
+          <div class="form-row">
+            <input type="text" placeholder="Nombre y Apellidos" required />
+            <input type="text" placeholder="Empresa" required />
+          </div>
+          <div class="form-row">
+            <input type="email" placeholder="Email profesional" required />
+            <input type="tel" placeholder="Teléfono" required />
+          </div>
+          <textarea placeholder="¿En qué podemos ayudarte? (Opcional)" rows="3"></textarea>
           <div class="preloader__cta-actions">
             <button type="submit" class="btn btn-primary">Enviar</button>
             <button type="button" class="btn-text" id="skip-cta-btn">Saltar y ver la web</button>
