@@ -119,23 +119,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (words.length > 1) {
       let current = 0
       const DURATION = 2500   // tiempo entre palabras (ms)
-      const ANIM_MS  = 260    // duración de la animación CSS (ms)
+      const ANIM_MS = 260    // duración de la animación CSS (ms)
 
       const rotate = () => {
-        // 1. Exit: la palabra actual baja y desaparece (wordExit keyframe)
+        // 1. Exit: current word goes out
         rotateEl.classList.remove('word-entering')
         rotateEl.classList.add('word-exiting')
 
         setTimeout(() => {
-          // 2. Cambia la palabra mientras está invisible
+          // 2. Change word while invisible
           current = (current + 1) % words.length
           rotateEl.textContent = words[current]
 
-          // 3. Fuerza reflow para que el navegador parta del estado inicial
+          // 3. Reset classes for entry
           rotateEl.classList.remove('word-exiting')
-          void rotateEl.offsetWidth // reflow
+          void rotateEl.offsetWidth // force reflow
 
-          // 4. Enter: la nueva palabra baja desde arriba (wordEnter keyframe)
+          // 4. Enter: next word comes in
           rotateEl.classList.add('word-entering')
         }, ANIM_MS)
       }
@@ -205,9 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', e => {
       e.preventDefault()
       const formInner = contactForm.querySelector('.form__fields')
-      const success   = contactForm.querySelector('.form__success')
+      const success = contactForm.querySelector('.form__success')
       if (formInner) formInner.style.display = 'none'
-      if (success)   success.classList.add('is-visible')
+      if (success) success.classList.add('is-visible')
     })
   }
 
