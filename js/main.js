@@ -7,18 +7,18 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── GLOBE PRELOADER & ENTER BUTTON ────────────────────── */
+  /* ── GLOBE PRELOADER & SCROLL REVEAL ───────────────────── */
   const initLoader = () => {
     const canvas = document.getElementById('globe-canvas')
     const loader = document.getElementById('preloader')
-    const enterBtn = document.getElementById('loader-enter-btn')
-    if (!canvas || !loader || !enterBtn) return
+    if (!canvas || !loader) return
 
-    // Lock scroll during loading
+    // Lock scroll initially
     document.body.style.overflow = 'hidden'
 
     let phi = 0
     let width = 0
+    let revealed = false
 
     const onResize = () => {
       width = canvas.offsetWidth
@@ -64,26 +64,37 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         canvas.style.opacity = '1'
       }, 500)
-
-      // Show enter button after a bit
-      setTimeout(() => {
-        enterBtn.classList.add('is-visible')
-      }, 1500)
     }
 
-    // Handle Enter Click
-    enterBtn.addEventListener('click', () => {
-      loader.classList.add('is-hidden')
-      document.body.style.overflow = '' // Restore scroll
+    const revealSite = () => {
+      if (revealed) return
+      revealed = true
 
-      // Reveal items manually since observer might miss them if preloader was covering
+      loader.classList.add('is-hidden')
+      document.body.style.overflow = ''
+
+      // Cleanup
+      window.removeEventListener('wheel', handleInteraction)
+      window.removeEventListener('touchmove', handleInteraction)
+      window.removeEventListener('keydown', handleInteraction)
+
       setTimeout(() => {
         window.dispatchEvent(new Event('scroll'))
-      }, 500)
+        if (globe) globe.destroy()
+      }, 1000)
+    }
 
-      // Clean up WebGL context after fade
-      setTimeout(() => globe.destroy(), 1000)
-    })
+    const handleInteraction = (e) => {
+      if (revealed) return
+      // Trigger reveal on scroll down or touch move
+      if (e.type === 'wheel' && e.deltaY > 0) revealSite()
+      if (e.type === 'touchmove') revealSite()
+      if (e.type === 'keydown' && (e.key === 'ArrowDown' || e.key === ' ')) revealSite()
+    }
+
+    window.addEventListener('wheel', handleInteraction, { passive: true })
+    window.addEventListener('touchmove', handleInteraction, { passive: true })
+    window.addEventListener('keydown', handleInteraction)
 
     // Initialization check
     if (window.createGlobe) {

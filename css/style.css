@@ -2679,14 +2679,11 @@ p {
 .preloader__content {
   position: relative;
   width: min(95vw, 600px);
-  /* Slightly narrower to avoid cut-off */
-  height: min(90vh, 800px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -20px;
-  /* Shift slightly up */
 }
 
 .preloader__globe-wrap {
@@ -2717,12 +2714,12 @@ p {
 }
 
 .preloader__logo img {
-  height: 80px;
-  /* Size increased */
+  height: 160px;
+  /* Doubled from 80px */
   width: auto;
   position: relative;
   /* Aurora Shiny Effect */
-  filter: drop-shadow(0 0 15px rgba(11, 180, 170, 0.3));
+  filter: drop-shadow(0 0 30px rgba(11, 180, 170, 0.4));
 }
 
 /* Aurora background for logo */
@@ -2762,33 +2759,6 @@ p {
   100% {
     background-position: -200% 0;
   }
-}
-
-.preloader__btn {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out, background 0.3s, scale 0.3s;
-  pointer-events: none;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 14px 40px;
-  font-size: 1.1rem;
-  box-shadow: 0 0 30px rgba(11, 180, 170, 0.4);
-  margin-top: -80px;
-  /* Pull button up overlapping slightly with globe bottom if needed to avoid cut-off */
-  z-index: 20;
-}
-
-.preloader__btn.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.preloader__btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  background: var(--c-primary-light);
-  box-shadow: 0 0 40px rgba(11, 180, 170, 0.6);
 }
 
 @keyframes logoPulse {
