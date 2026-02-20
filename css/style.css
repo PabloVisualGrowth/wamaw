@@ -17,10 +17,12 @@
   --c-primary-pale: #e6f7f6;
   --c-primary-glow: rgba(11, 180, 170, 0.25);
 
-  /* Dark neutrals for premium hero/CTA sections */
+  /* Dark neutrals for premium hero/CTA/Stats sections - UNIFIED MONOCHROMATIC */
   --c-dark: #0b1622;
-  --c-dark-mid: #142133;
-  --c-dark-card: rgba(20, 33, 51, 0.85);
+  --c-dark-mid: #0b1622;
+  /* Changed from #142133 to match --c-dark perfectly */
+  --c-dark-card: rgba(11, 22, 34, 0.85);
+  /* Adjusted to match new base */
 
   /* Neutrals */
   --c-white: #ffffff;
@@ -2420,15 +2422,23 @@ p {
   margin: 0;
 }
 
+/* Base adjustment for all divider shapes to prevent sub-pixel gaps */
+.section-divider::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: calc(100% + 2px);
+  z-index: 1;
+}
+
 /* dark → white: dark background, white trapezoid sweeps up from bottom-right */
 .section-divider--dark-to-white {
   background: var(--c-dark);
 }
 
 .section-divider--dark-to-white::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: var(--c-white);
   clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
 }
@@ -2439,9 +2449,6 @@ p {
 }
 
 .section-divider--white-to-dark::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: var(--c-dark-mid);
   clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
 }
@@ -2452,9 +2459,6 @@ p {
 }
 
 .section-divider--pale-to-dark::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: var(--c-dark);
   clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
 }
@@ -2465,9 +2469,6 @@ p {
 }
 
 .section-divider--dark-to-pale::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: var(--c-primary-pale);
   clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
 }
