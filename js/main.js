@@ -112,41 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     statNumbers.forEach(el => statsObserver.observe(el))
   }
 
-  /* ── WORD ROTATE — slide y + opacity, como WordRotate motion/react ── */
-  const rotateEl = document.querySelector('.hero__rotate-word')
-  if (rotateEl) {
-    const words = rotateEl.dataset.words ? JSON.parse(rotateEl.dataset.words) : []
-    if (words.length > 1) {
-      let current = 0
-      const DURATION = 2500   // tiempo entre palabras (ms)
-      const ANIM_MS = 260    // duración de la animación CSS (ms)
 
-      // Initialize first word with entering animation
-      rotateEl.textContent = words[0]
-      rotateEl.classList.add('word-entering')
-
-      const rotate = () => {
-        // 1. Exit: current word goes out
-        rotateEl.classList.remove('word-entering')
-        rotateEl.classList.add('word-exiting')
-
-        setTimeout(() => {
-          // 2. Change word while invisible
-          current = (current + 1) % words.length
-          rotateEl.textContent = words[current]
-
-          // 3. Reset classes for entry
-          rotateEl.classList.remove('word-exiting')
-          void rotateEl.offsetWidth // force reflow
-
-          // 4. Enter: next word comes in
-          rotateEl.classList.add('word-entering')
-        }, ANIM_MS)
-      }
-
-      setInterval(rotate, DURATION)
-    }
-  }
 
   /* ── MAGIC CARDS (mouse-tracking gradient spotlight) ──── */
   const magicCards = document.querySelectorAll('.magic-card')

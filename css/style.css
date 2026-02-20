@@ -626,7 +626,6 @@ p {
 .hero .container {
   margin-left: 0;
   padding-left: 48px;
-  /* Give it some breathing room from the edge but start at the left */
 }
 
 .hero__content {
@@ -634,7 +633,6 @@ p {
   z-index: 2;
   width: 100%;
   padding-top: 80px;
-  /* nav height */
   text-align: left;
 }
 
@@ -648,73 +646,6 @@ p {
   font-size: clamp(3rem, 6.5vw, 5.5rem);
   line-height: 1.05;
   font-weight: 800;
-}
-
-.hero__rotate-wrapper {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  height: 1.1em;
-}
-
-/* Word rotate — efecto slide y + opacity como WordRotate de motion/react */
-.hero__rotate-word {
-  display: inline-block;
-  opacity: 1;
-  /* Ensure visible by default */
-  animation-duration: 0.25s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
-}
-
-.hero__rotate-word.word-entering {
-  animation-name: wordEnter;
-}
-
-.hero__rotate-word.word-exiting {
-  animation-name: wordExit;
-}
-
-@keyframes wordEnter {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes wordExit {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-}
-
-.aurora-text {
-  background: linear-gradient(135deg, var(--c-primary-light), #fff, var(--c-primary), var(--c-primary-light));
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  display: inline-block;
-  /* Ensure background-clip works well */
-  animation: aurora 5s linear infinite;
-  /* Remove -webkit-text-fill-color: transparent temporarily to debug or use color for fallback */
-  color: var(--c-primary);
-}
-
-@supports (-webkit-background-clip: text) {
-  .aurora-text {
-    -webkit-text-fill-color: transparent;
-  }
 }
 
 .hero__subtitle {
