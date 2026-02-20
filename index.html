@@ -41,7 +41,19 @@
           </div>
           <textarea placeholder="¿En qué podemos ayudarte? (Opcional)" rows="3"></textarea>
           <div class="preloader__cta-actions">
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn-hover" aria-label="Enviar formulario">
+              <div class="btn-hover__inner">
+                <div class="btn-hover__dot"></div>
+                <span>Enviar</span>
+              </div>
+              <div class="btn-hover__overlay">
+                <span>Enviar</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </button>
             <button type="button" class="btn-text" id="skip-cta-btn">Saltar y ver la web</button>
           </div>
         </form>
@@ -74,7 +86,19 @@
         <li><a href="medios.html">Medios</a></li>
       </ul>
       <div class="nav__cta">
-        <a href="contactanos.html" class="btn btn-primary">Habla con nosotros</a>
+        <a href="contactanos.html" class="btn-hover" role="button">
+          <div class="btn-hover__inner">
+            <div class="btn-hover__dot"></div>
+            <span>Habla con nosotros</span>
+          </div>
+          <div class="btn-hover__overlay">
+            <span>Habla con nosotros</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
       </div>
       <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -89,7 +113,19 @@
     <a href="#nosotros">Así somos</a>
     <a href="#proceso">Cómo trabajamos</a>
     <a href="medios.html">Medios</a>
-    <a href="contactanos.html" class="btn btn-primary">Habla con nosotros</a>
+    <a href="contactanos.html" class="btn-hover" role="button">
+      <div class="btn-hover__inner">
+        <div class="btn-hover__dot"></div>
+        <span>Habla con nosotros</span>
+      </div>
+      <div class="btn-hover__overlay">
+        <span>Habla con nosotros</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+    </a>
   </div>
 
   <main>
@@ -773,10 +809,7 @@
           </a>
           <a href="#servicios" class="btn btn-ghost">Ver nuestros servicios</a>
         </div>
-        <p class="cta-section__email reveal reveal-delay-4">
-          O escríbenos directamente a
-          <a href="mailto:info@wamawtravel.com">info@wamawtravel.com</a>
-        </p>
+
       </div>
     </section>
 
@@ -868,7 +901,19 @@
               Emergencias 24h · 365 días
             </li>
             <li style="margin-top:12px;">
-              <a href="contactanos.html" class="btn btn-primary btn-sm">Habla con nosotros</a>
+              <a href="contactanos.html" class="btn-hover btn-sm" role="button">
+                <div class="btn-hover__inner">
+                  <div class="btn-hover__dot"></div>
+                  <span>Habla con nosotros</span>
+                </div>
+                <div class="btn-hover__overlay">
+                  <span>Habla con nosotros</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
             </li>
           </ul>
         </div>

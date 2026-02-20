@@ -797,7 +797,7 @@ p {
 .intro__image-wrap {
   position: relative;
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  /* overflow: hidden; removed so the badge can float outside */
 }
 
 .intro__image {
@@ -2724,7 +2724,7 @@ p {
 }
 
 .preloader-logo-img {
-  height: 140px !important;
+  height: 210px !important;
   width: auto !important;
   max-width: 90vw;
   object-fit: contain;
