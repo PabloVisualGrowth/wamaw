@@ -1203,16 +1203,50 @@ p {
   position: relative;
 }
 
-/* Connecting line */
+/* Connecting line with airplane at the end */
 .process__steps::before {
   content: '';
   position: absolute;
   top: 28px;
   left: calc(12.5% + 12px);
-  right: calc(12.5% + 12px);
+  right: 0;
+  /* Extend to the end of the container */
   height: 1px;
-  background: linear-gradient(90deg, var(--c-primary) 0%, var(--c-primary-light) 50%, var(--c-primary) 100%);
-  opacity: 0.3;
+  background: linear-gradient(90deg,
+      var(--c-primary) 0%,
+      var(--c-primary-light) 50%,
+      rgba(11, 180, 170, 0) 100%);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.process__steps::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  /* Centered with the line (28px line top - 10px half icon height) */
+  right: -10px;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230bb4aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5s-2.5 0-4 1.5L13.5 8.5l-8.2-1.8L3 9l7.5 4-4 4L4 17l4 4 1-.5 4-4 4 7.5 1.7-2.3z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transform: rotate(45deg);
+  /* Pointing slightly up/right */
+  animation: planeFloat 3s ease-in-out infinite;
+}
+
+@keyframes planeFloat {
+
+  0%,
+  100% {
+    transform: rotate(45deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(45deg) translateY(-3px);
+  }
 }
 
 .step {
