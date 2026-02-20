@@ -1780,11 +1780,32 @@ p {
 
 /* ── FORM ─────────────────────────────────────────────────── */
 .contact__form-wrap {
+  position: relative;
   background: var(--c-white);
-  border: 1px solid var(--c-gray-100);
   border-radius: var(--radius-xl);
   padding: 44px 40px;
   box-shadow: var(--shadow-card);
+}
+
+.contact__form-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: calc(var(--radius-xl) + 1.5px);
+  background: linear-gradient(90deg, transparent, var(--c-primary-glow), var(--c-primary), var(--c-primary-glow), transparent);
+  background-size: 200% 100%;
+  animation: borderShine 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes borderShine {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .contact__form-wrap h3 {
