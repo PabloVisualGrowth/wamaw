@@ -625,6 +625,8 @@ p {
 /* Hero content: alineado a la izquierda, sin restricción de ancho */
 .hero .container {
   margin-left: 0;
+  padding-left: 48px;
+  /* Give it some breathing room from the edge but start at the left */
 }
 
 .hero__content {
@@ -657,7 +659,9 @@ p {
 
 /* Word rotate — efecto slide y + opacity como WordRotate de motion/react */
 .hero__rotate-word {
-  display: block;
+  display: inline-block;
+  opacity: 1;
+  /* Ensure visible by default */
   animation-duration: 0.25s;
   animation-timing-function: ease-out;
   animation-fill-mode: both;
@@ -692,6 +696,24 @@ p {
   to {
     opacity: 0;
     transform: translateY(50px);
+  }
+}
+
+.aurora-text {
+  background: linear-gradient(135deg, var(--c-primary-light), #fff, var(--c-primary), var(--c-primary-light));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+  /* Ensure background-clip works well */
+  animation: aurora 5s linear infinite;
+  /* Remove -webkit-text-fill-color: transparent temporarily to debug or use color for fallback */
+  color: var(--c-primary);
+}
+
+@supports (-webkit-background-clip: text) {
+  .aurora-text {
+    -webkit-text-fill-color: transparent;
   }
 }
 

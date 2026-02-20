@@ -121,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const DURATION = 2500   // tiempo entre palabras (ms)
       const ANIM_MS = 260    // duración de la animación CSS (ms)
 
+      // Initialize first word with entering animation
+      rotateEl.textContent = words[0]
+      rotateEl.classList.add('word-entering')
+
       const rotate = () => {
         // 1. Exit: current word goes out
         rotateEl.classList.remove('word-entering')
