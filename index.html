@@ -13,16 +13,32 @@
 <body>
 
   <!-- ══════════════════════════════════════════════════════════
-       PRELOADER — Globe & Logo
+       PRELOADER — Globe, Logo & CTA
   ══════════════════════════════════════════════════════════ -->
   <div id="preloader" class="preloader">
     <div class="preloader__content">
-      <div class="preloader__globe-wrap">
+
+      <!-- Globe Face (Fades out first) -->
+      <div class="preloader__globe-wrap" id="globe-container">
         <canvas id="globe-canvas"></canvas>
-        <div class="preloader__logo">
-          <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Logo" />
-        </div>
+        <div class="preloader__logo" aria-label="Wamaw Logo"></div>
       </div>
+
+      <!-- Lead Capture CTA (Fades in after globe) -->
+      <div class="preloader__cta is-hidden" id="preloader-cta">
+        <h3 class="gradient-text">Acceso Premium</h3>
+        <p>Déjanos tus datos y nos pondremos en contacto contigo lo antes posible para organizar los viajes de tu
+          empresa a medida.</p>
+        <form id="preloader-form" class="preloader__form">
+          <input type="text" placeholder="Tu nombre" required />
+          <input type="email" placeholder="Tu email profesional" required />
+          <div class="preloader__cta-actions">
+            <button type="submit" class="btn btn-primary">Crear cuenta</button>
+            <button type="button" class="btn-text" id="skip-cta-btn">Saltar y ver la web</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 

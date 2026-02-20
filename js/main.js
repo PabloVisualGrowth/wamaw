@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const initLoader = () => {
     const canvas = document.getElementById('globe-canvas')
     const loader = document.getElementById('preloader')
+    const globeWrap = document.getElementById('globe-container')
+    const ctaWrap = document.getElementById('preloader-cta')
+    const ctaForm = document.getElementById('preloader-form')
+    const skipBtn = document.getElementById('skip-cta-btn')
+
     if (!canvas || !loader) return
 
     // Lock scroll initially
@@ -18,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let phi = 0
     let width = 0
-    let revealed = false
+    let globeFaded = false
+    let siteRevealed = false
 
     const onResize = () => {
       width = canvas.offsetWidth
@@ -66,30 +72,71 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500)
     }
 
-    const revealSite = () => {
-      if (revealed) return
-      revealed = true
+    // Step 1: Fade out globe and show CTA
+    const fadeGlobeShowCTA = () => {
+      if (globeFaded) return
+      globeFaded = true
 
-      loader.classList.add('is-hidden')
-      document.body.style.overflow = ''
-
-      // Cleanup
+      // Cleanup initial scroll listeners
       window.removeEventListener('wheel', handleInteraction)
       window.removeEventListener('touchmove', handleInteraction)
       window.removeEventListener('keydown', handleInteraction)
 
+      // Fade out globe wrapper
+      if (globeWrap) {
+        globeWrap.style.opacity = '0'
+        setTimeout(() => {
+          globeWrap.style.display = 'none'
+          if (globe) globe.destroy()
+
+          // Show CTA
+          if (ctaWrap) {
+            ctaWrap.classList.remove('is-hidden')
+            ctaWrap.classList.add('is-visible')
+          } else {
+            // fallback if CTA doesn't exist
+            finalizeEntry()
+          }
+        }, 2500) // matches CSS 2.5s transition
+      }
+    }
+
+    // Step 2: Finalize entry to main site
+    const finalizeEntry = () => {
+      if (siteRevealed) return
+      siteRevealed = true
+
+      loader.classList.add('is-hidden')
+      document.body.style.overflow = ''
+
       setTimeout(() => {
         window.dispatchEvent(new Event('scroll'))
-        if (globe) globe.destroy()
       }, 1000)
     }
 
+    // CTA Events
+    if (ctaForm) {
+      ctaForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const btn = ctaForm.querySelector('button[type="submit"]')
+        btn.textContent = 'Procesando...'
+        setTimeout(() => {
+          btn.textContent = '¡Gracias!'
+          setTimeout(finalizeEntry, 800)
+        }, 1000)
+      })
+    }
+
+    if (skipBtn) {
+      skipBtn.addEventListener('click', finalizeEntry)
+    }
+
     const handleInteraction = (e) => {
-      if (revealed) return
-      // Trigger reveal on scroll down or touch move
-      if (e.type === 'wheel' && e.deltaY > 0) revealSite()
-      if (e.type === 'touchmove') revealSite()
-      if (e.type === 'keydown' && (e.key === 'ArrowDown' || e.key === ' ')) revealSite()
+      if (globeFaded) return
+      // Trigger sequence on scroll down or touch move
+      if (e.type === 'wheel' && e.deltaY > 0) fadeGlobeShowCTA()
+      if (e.type === 'touchmove') fadeGlobeShowCTA()
+      if (e.type === 'keydown' && (e.key === 'ArrowDown' || e.key === ' ')) fadeGlobeShowCTA()
     }
 
     window.addEventListener('wheel', handleInteraction, { passive: true })
