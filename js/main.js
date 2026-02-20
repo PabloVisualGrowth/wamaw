@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500)
     }
 
-    // Step 1: Fade out globe and show CTA
+    // Step 1: Fade out globe and logo simultaneously, then show CTA
     const fadeGlobeShowCTA = () => {
       if (globeFaded) return
       globeFaded = true
@@ -82,9 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
       window.removeEventListener('touchmove', handleInteraction)
       window.removeEventListener('keydown', handleInteraction)
 
-      // Fade out globe wrapper
+      // Fade out globe wrapper (which contains both canvas and logo)
       if (globeWrap) {
+        globeWrap.style.transition = 'opacity 1s ease-out'
         globeWrap.style.opacity = '0'
+
         setTimeout(() => {
           globeWrap.style.display = 'none'
           if (globe) globe.destroy()
@@ -94,10 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ctaWrap.classList.remove('is-hidden')
             ctaWrap.classList.add('is-visible')
           } else {
-            // fallback if CTA doesn't exist
             finalizeEntry()
           }
-        }, 2500) // matches CSS 2.5s transition
+        }, 1000) // 1s transition
       }
     }
 
@@ -106,12 +107,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (siteRevealed) return
       siteRevealed = true
 
-      loader.classList.add('is-hidden')
-      document.body.style.overflow = ''
+      // Fade out CTA specifically before hiding the whole loader
+      if (ctaWrap) {
+        ctaWrap.classList.remove('is-visible')
+        ctaWrap.style.opacity = '0'
+      }
 
       setTimeout(() => {
-        window.dispatchEvent(new Event('scroll'))
-      }, 1000)
+        loader.classList.add('is-hidden')
+        document.body.style.overflow = ''
+
+        setTimeout(() => {
+          window.dispatchEvent(new Event('scroll'))
+        }, 800)
+      }, 500) // Wait for CTA fade out
     }
 
     // CTA Events
@@ -119,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctaForm.addEventListener('submit', (e) => {
         e.preventDefault()
         const btn = ctaForm.querySelector('button[type="submit"]')
-        btn.textContent = 'Procesando...'
+        btn.textContent = 'Enviando...'
         setTimeout(() => {
           btn.textContent = '¡Gracias!'
           setTimeout(finalizeEntry, 800)
@@ -133,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleInteraction = (e) => {
       if (globeFaded) return
-      // Trigger sequence on scroll down or touch move
+      // Trigger sequence only on scroll down or swipe up
       if (e.type === 'wheel' && e.deltaY > 0) fadeGlobeShowCTA()
       if (e.type === 'touchmove') fadeGlobeShowCTA()
       if (e.type === 'keydown' && (e.key === 'ArrowDown' || e.key === ' ')) fadeGlobeShowCTA()
