@@ -261,39 +261,52 @@ p  { line-height: 1.7; }
 .btn-lg { padding: 17px 36px; font-size: 1.05rem; }
 .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
 
-/* ── INTERACTIVE HOVER BUTTON ─────────────────────────────── */
+/* ── INTERACTIVE HOVER BUTTON — efecto InteractiveHoverButton ─ */
+/* Dot que expande, texto que sale a la derecha, overlay que entra desde la derecha */
 .btn-hover {
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
   background: var(--c-primary);
   color: var(--c-white);
-  padding: 16px 32px;
+  padding: 14px 28px;
   border-radius: var(--radius-full);
   font-weight: 600;
   font-size: 0.95rem;
   box-shadow: 0 4px 20px var(--c-primary-glow);
-  transition: box-shadow var(--transition);
+  cursor: pointer;
+  border: none;
+  text-align: center;
 }
-.btn-hover:hover { box-shadow: 0 8px 32px var(--c-primary-glow); }
 .btn-hover__inner {
   display: flex;
   align-items: center;
-  gap: 10px;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  gap: 8px;
+  /* NO mueve el contenedor completo — solo el span se mueve */
 }
-.btn-hover:hover .btn-hover__inner {
+/* Solo el texto sale hacia la derecha */
+.btn-hover__inner span {
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.btn-hover:hover .btn-hover__inner span {
   transform: translateX(48px);
   opacity: 0;
 }
+/* El dot se expande para cubrir el botón */
 .btn-hover__dot {
-  width: 10px; height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(255,255,255,.5);
-  transition: transform 0.4s ease;
+  background: rgba(255, 255, 255, 0.55);
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-hover:hover .btn-hover__dot {
-  transform: scale(0);
+  transform: scale(150);
 }
+/* Overlay entra desde la derecha */
 .btn-hover__overlay {
   position: absolute;
   inset: 0;
@@ -301,16 +314,17 @@ p  { line-height: 1.7; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transform: translateX(-48px);
+  transform: translateX(48px);
   opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .btn-hover:hover .btn-hover__overlay {
-  transform: translateX(0);
+  transform: translateX(-5px);
   opacity: 1;
 }
 .btn-hover__overlay svg {
-  width: 18px; height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 /* ── NAVIGATION ───────────────────────────────────────────── */
@@ -337,14 +351,14 @@ p  { line-height: 1.7; }
   max-width: 1160px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 72px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
 }
 .nav__logo img {
-  height: 38px;
+  height: 56px;
   width: auto;
   filter: brightness(0) invert(1);
   transition: filter var(--transition);
@@ -441,21 +455,14 @@ p  { line-height: 1.7; }
   inset: 0;
   background: linear-gradient(135deg, rgba(11,22,34,.85) 0%, rgba(11,22,34,.65) 50%, rgba(55,116,111,.25) 100%);
 }
-/* Subtle grid pattern on hero */
-.hero__grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(11,180,170,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(11,180,170,.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
-}
+/* Grid pattern eliminado por petición del cliente */
+.hero__grid { display: none; }
+/* Hero content: alineado a la izquierda, sin restricción de ancho */
 .hero__content {
   position: relative;
   z-index: 2;
-  max-width: 900px;
-  padding-top: 72px; /* nav height */
+  width: 100%;
+  padding-top: 80px; /* nav height */
 }
 .hero__badge {
   margin-bottom: 28px;
@@ -473,18 +480,26 @@ p  { line-height: 1.7; }
   vertical-align: bottom;
   height: 1.1em;
 }
+/* Word rotate — efecto slide y + opacity como WordRotate de motion/react */
 .hero__rotate-word {
   display: block;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
-.hero__rotate-word.is-exiting {
-  transform: translateY(-110%);
-  opacity: 0;
+.hero__rotate-word.word-entering {
+  animation-name: wordEnter;
 }
-.hero__rotate-word.is-entering {
-  transform: translateY(110%);
-  opacity: 0;
-  transition: none;
+.hero__rotate-word.word-exiting {
+  animation-name: wordExit;
+}
+@keyframes wordEnter {
+  from { opacity: 0; transform: translateY(-50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes wordExit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(50px); }
 }
 .hero__subtitle {
   color: rgba(255,255,255,.72);
@@ -500,26 +515,9 @@ p  { line-height: 1.7; }
   gap: 16px;
   flex-wrap: wrap;
 }
-.hero__scroll {
-  position: absolute;
-  bottom: 36px; left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: rgba(255,255,255,.4);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  z-index: 2;
-  animation: float 2.4s ease-in-out infinite;
-}
-.hero__scroll-line {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, rgba(11,180,170,.7), transparent);
-}
+/* Scroll indicator eliminado por petición del cliente */
+.hero__scroll { display: none; }
+.hero__scroll-line { display: none; }
 @keyframes float {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50%       { transform: translateX(-50%) translateY(8px); }
@@ -1052,14 +1050,8 @@ p  { line-height: 1.7; }
   inset: 0;
   background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(11,180,170,.18), transparent);
 }
-.cta-section__grid-overlay {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(11,180,170,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(11,180,170,.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+/* CTA grid overlay eliminado por petición del cliente */
+.cta-section__grid-overlay { display: none; }
 .cta-section__content { position: relative; z-index: 2; }
 .cta-section h2 {
   color: var(--c-white);

@@ -112,25 +112,35 @@ document.addEventListener('DOMContentLoaded', () => {
     statNumbers.forEach(el => statsObserver.observe(el))
   }
 
-  /* ── WORD ROTATE (hero headline) ──────────────────────── */
+  /* ── WORD ROTATE — slide y + opacity, como WordRotate motion/react ── */
   const rotateEl = document.querySelector('.hero__rotate-word')
   if (rotateEl) {
     const words = rotateEl.dataset.words ? JSON.parse(rotateEl.dataset.words) : []
     if (words.length > 1) {
       let current = 0
-      setInterval(() => {
-        // Exit animation
-        rotateEl.classList.add('is-exiting')
+      const DURATION = 2500   // tiempo entre palabras (ms)
+      const ANIM_MS  = 260    // duración de la animación CSS (ms)
+
+      const rotate = () => {
+        // 1. Exit: la palabra actual baja y desaparece (wordExit keyframe)
+        rotateEl.classList.remove('word-entering')
+        rotateEl.classList.add('word-exiting')
+
         setTimeout(() => {
+          // 2. Cambia la palabra mientras está invisible
           current = (current + 1) % words.length
-          rotateEl.classList.remove('is-exiting')
-          rotateEl.classList.add('is-entering')
           rotateEl.textContent = words[current]
-          // Force reflow then animate in
-          rotateEl.getBoundingClientRect()
-          rotateEl.classList.remove('is-entering')
-        }, 380)
-      }, 3200)
+
+          // 3. Fuerza reflow para que el navegador parta del estado inicial
+          rotateEl.classList.remove('word-exiting')
+          void rotateEl.offsetWidth // reflow
+
+          // 4. Enter: la nueva palabra baja desde arriba (wordEnter keyframe)
+          rotateEl.classList.add('word-entering')
+        }, ANIM_MS)
+      }
+
+      setInterval(rotate, DURATION)
     }
   }
 
