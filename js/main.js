@@ -7,6 +7,100 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── GLOBE PRELOADER & ENTER BUTTON ────────────────────── */
+  const initLoader = () => {
+    const canvas = document.getElementById('globe-canvas')
+    const loader = document.getElementById('preloader')
+    const enterBtn = document.getElementById('loader-enter-btn')
+    if (!canvas || !loader || !enterBtn) return
+
+    // Lock scroll during loading
+    document.body.style.overflow = 'hidden'
+
+    let phi = 0
+    let width = 0
+
+    const onResize = () => {
+      width = canvas.offsetWidth
+    }
+    window.addEventListener('resize', onResize)
+    onResize()
+
+    // Config based on user request (MagicUI/Cobe)
+    const GLOBE_CONFIG = {
+      width: width * 2,
+      height: width * 2,
+      onRender: (state) => {
+        state.phi = phi
+        phi += 0.005
+        state.width = width * 2
+        state.height = width * 2
+      },
+      devicePixelRatio: 2,
+      phi: 0,
+      theta: 0.3,
+      dark: 1,
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 6,
+      baseColor: [0.3, 0.3, 0.3],
+      markerColor: [0.1, 0.8, 1],
+      glowColor: [1, 1, 1],
+      markers: [
+        { location: [40.4168, -3.7038], size: 0.05 }, // Madrid
+        { location: [40.7128, -74.006], size: 0.07 }, // NY
+        { location: [35.6762, 139.6503], size: 0.07 }, // Tokyo
+        { location: [-23.5505, -46.6333], size: 0.07 }, // Sao Paulo
+        { location: [25.2048, 55.2708], size: 0.07 }, // Dubai
+      ],
+    }
+
+    let globe;
+
+    const startGlobe = () => {
+      globe = window.createGlobe(canvas, GLOBE_CONFIG)
+
+      // Fade in symbols
+      setTimeout(() => {
+        canvas.style.opacity = '1'
+      }, 500)
+
+      // Show enter button after a bit
+      setTimeout(() => {
+        enterBtn.classList.add('is-visible')
+      }, 1500)
+    }
+
+    // Handle Enter Click
+    enterBtn.addEventListener('click', () => {
+      loader.classList.add('is-hidden')
+      document.body.style.overflow = '' // Restore scroll
+
+      // Reveal items manually since observer might miss them if preloader was covering
+      setTimeout(() => {
+        window.dispatchEvent(new Event('scroll'))
+      }, 500)
+
+      // Clean up WebGL context after fade
+      setTimeout(() => globe.destroy(), 1000)
+    })
+
+    // Initialization check
+    if (window.createGlobe) {
+      startGlobe()
+    } else {
+      const checkCobe = setInterval(() => {
+        if (window.createGlobe) {
+          clearInterval(checkCobe)
+          startGlobe()
+        }
+      }, 100)
+    }
+  }
+
+  initLoader()
+
+
   /* ── SCROLL PROGRESS BAR ──────────────────────────────── */
   const scrollProgress = document.querySelector('.scroll-progress')
   if (scrollProgress) {
