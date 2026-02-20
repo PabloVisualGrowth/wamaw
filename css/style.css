@@ -2665,29 +2665,37 @@ p {
   align-items: center;
   justify-content: center;
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+  /* Airplane Cursor - using a simple SVG data URI */
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%230bb4aa' stroke='%23ffffff' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5s-2.5 0-4 1.5L13.5 8.5l-8.2-1.8L3 9l7.5 4-4 4L4 17l4 4 1-.5 4-4 4 7.5 1.7-2.3z'%3E%3C/path%3E%3C/svg%3E") 12 12, auto;
 }
 
 .preloader.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  cursor: auto;
 }
 
 .preloader__content {
   position: relative;
-  width: min(90vw, 800px);
+  width: min(95vw, 600px);
+  /* Slightly narrower to avoid cut-off */
+  height: min(90vh, 800px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  margin-top: -20px;
+  /* Shift slightly up */
 }
 
 .preloader__globe-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
-  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #globe-canvas {
@@ -2699,12 +2707,61 @@ p {
 
 .preloader__logo {
   position: absolute;
-  top: 50%;
+  top: 15%;
+  /* Positioned at the top of the globe */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
   pointer-events: none;
-  animation: logoPulse 3s ease-in-out infinite;
+  text-align: center;
+}
+
+.preloader__logo img {
+  height: 80px;
+  /* Size increased */
+  width: auto;
+  position: relative;
+  /* Aurora Shiny Effect */
+  filter: drop-shadow(0 0 15px rgba(11, 180, 170, 0.3));
+}
+
+/* Aurora background for logo */
+.preloader__logo::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  right: -20%;
+  bottom: -20%;
+  background: linear-gradient(45deg,
+      transparent 20%,
+      #0bb4aa 35%,
+      #7df9ff 45%,
+      #ff00ff 50%,
+      #7df9ff 55%,
+      #0bb4aa 65%,
+      transparent 80%);
+  background-size: 300% 300%;
+  animation: auroraSweep 3.5s linear infinite;
+  mix-blend-mode: color-dodge;
+  mask-image: url("https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url("https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+@keyframes auroraSweep {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .preloader__btn {
@@ -2714,9 +2771,12 @@ p {
   pointer-events: none;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 16px 32px;
+  padding: 14px 40px;
   font-size: 1.1rem;
-  box-shadow: 0 10px 30px rgba(11, 180, 170, 0.3);
+  box-shadow: 0 0 30px rgba(11, 180, 170, 0.4);
+  margin-top: -80px;
+  /* Pull button up overlapping slightly with globe bottom if needed to avoid cut-off */
+  z-index: 20;
 }
 
 .preloader__btn.is-visible {
@@ -2726,15 +2786,9 @@ p {
 }
 
 .preloader__btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.02);
   background: var(--c-primary-light);
-}
-
-.preloader__logo img {
-  height: 64px;
-  /* Slightly larger */
-  width: auto;
-  filter: drop-shadow(0 0 20px rgba(11, 180, 170, 0.4));
+  box-shadow: 0 0 40px rgba(11, 180, 170, 0.6);
 }
 
 @keyframes logoPulse {
