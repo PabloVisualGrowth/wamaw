@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wamaw Travel Group — Agencia de viajes corporativos, MICE y Sport. Tecnología + trato humano 24h para la movilidad de tu empresa. Nos sentirás siempre cerca." />
+  <title>Wamaw Travel Group · Viajes Corporativos, MICE y Sport</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAV — transparent on hero, dark glass on scroll
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="nav nav--transparent" aria-label="Navegación principal">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="Wamaw Travel Group — inicio">
+        <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png"
+             alt="Wamaw Travel Group" />
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Así somos</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a href="medios.html">Medios</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a href="contactanos.html" class="btn btn-primary">Habla con nosotros</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="nav__mobile" role="dialog" aria-modal="true" aria-label="Menú móvil">
+    <span class="nav__mobile-close" aria-label="Cerrar menú">&times;</span>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Así somos</a>
+    <a href="#proceso">Cómo trabajamos</a>
+    <a href="medios.html">Medios</a>
+    <a href="contactanos.html" class="btn btn-primary">Habla con nosotros</a>
+  </div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO — dark, full viewport
+    ══════════════════════════════════════════════════════ -->
+    <section class="hero" aria-label="Presentación principal">
+      <video class="hero__video" autoplay muted loop playsinline aria-hidden="true"
+             poster="">
+        <source src="https://wamawtravel.com/wp-content/uploads/2022/02/Lines-5224.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__content">
+          <div class="hero__badge blur-in">
+            <span class="label-shiny">Agencia de viajes corporativos · MICE · Sport</span>
+          </div>
+
+          <!-- H1: word rotate en "viajes [word]" -->
+          <h1 class="hero__title blur-in blur-in-d1">
+            La movilidad<br>
+            <span class="aurora-text">
+              <span class="hero__rotate-wrapper">
+                <span class="hero__rotate-word"
+                      data-words='["corporativa","MICE","deportiva","de tu empresa"]'
+                >corporativa</span>
+              </span>
+            </span><br>
+            en las mejores manos
+          </h1>
+
+          <p class="hero__subtitle blur-in blur-in-d2">
+            Tecnología de última generación con el trato personal y humano que tu empresa merece.
+            Disponibles 24&nbsp;horas, los 365 días del año. <em>Nos sentirás siempre cerca.</em>
+          </p>
+
+          <div class="hero__actions blur-in blur-in-d3">
+            <!-- Interactive hover button — CTA principal -->
+            <a href="contactanos.html" class="btn-hover" role="button">
+              <div class="btn-hover__inner">
+                <div class="btn-hover__dot"></div>
+                <span>Solicitar propuesta</span>
+              </div>
+              <div class="btn-hover__overlay">
+                <span>Solicitar propuesta</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </a>
+            <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         TRUST BAR — dark-mid, marquee de asociaciones
+         Sección: bloque de confianza con logos y badges
+    ══════════════════════════════════════════════════════ -->
+    <div class="trust-bar" aria-label="Membresías y certificaciones">
+      <div class="trust-bar__track" aria-hidden="true">
+        <!-- Grupo 1 — se clona para el loop infinito -->
+        <div class="trust-bar__group" style="display:flex;align-items:center;gap:var(--gap,48px);flex-shrink:0;">
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Miembro AVASA
+          </div>
+          <div class="trust-bar__sep" aria-hidden="true"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Servicio 24h · 365 días
+          </div>
+          <div class="trust-bar__sep" aria-hidden="true"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            I de MICE
+          </div>
+          <div class="trust-bar__sep" aria-hidden="true"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Código Ético FENIN
+          </div>
+          <div class="trust-bar__sep" aria-hidden="true"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Viajes sostenibles
+          </div>
+          <div class="trust-bar__sep" aria-hidden="true"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            App móvil de gestión
+          </div>
+          <div class="trust-bar__sep" aria-hidden="true"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon" aria-hidden="true"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            Reporting & analytics
+          </div>
+        </div>
+        <!-- Grupo 2 — copia para loop infinito -->
+        <div class="trust-bar__group" style="display:flex;align-items:center;gap:var(--gap,48px);flex-shrink:0;" aria-hidden="true">
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Miembro AVASA
+          </div>
+          <div class="trust-bar__sep"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Servicio 24h · 365 días
+          </div>
+          <div class="trust-bar__sep"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            I de MICE
+          </div>
+          <div class="trust-bar__sep"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Código Ético FENIN
+          </div>
+          <div class="trust-bar__sep"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Viajes sostenibles
+          </div>
+          <div class="trust-bar__sep"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            App móvil de gestión
+          </div>
+          <div class="trust-bar__sep"></div>
+          <div class="trust-bar__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="trust-icon"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            Reporting & analytics
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagonal divider: trust-bar dark → intro white -->
+    <div class="section-divider section-divider--dark-to-white" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         INTRO — BLANCO · "Así somos"
+         Primer salto a blanco: transmite claridad tras el hero oscuro
+    ══════════════════════════════════════════════════════ -->
+    <section class="section intro" id="nosotros">
+      <div class="container">
+        <div class="intro__grid">
+          <!-- Imagen lado izquierdo -->
+          <div class="intro__image-wrap reveal">
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+              alt="Equipo Wamaw Travel Group reunido"
+              class="intro__image"
+              loading="lazy"
+            />
+            <div class="intro__badge-float">
+              <div class="big">24<sup>h</sup></div>
+              <div class="small">Atención siempre</div>
+            </div>
+          </div>
+
+          <!-- Texto lado derecho -->
+          <div class="reveal reveal-delay-2">
+            <span class="label">Así somos</span>
+            <h2>Una agencia pensada<br>para empresas que <span class="text-primary">se mueven.</span></h2>
+            <div class="divider"></div>
+            <p style="color:var(--c-gray-500);line-height:1.75;margin-bottom:28px;">
+              Wamaw Travel Group nació para revolucionar la manera en que las empresas gestionan
+              su movilidad. Combinamos la tecnología más avanzada con el trato cercano y humano
+              que solo una agencia especializada puede ofrecer. Tres divisiones, un único equipo
+              comprometido con tu empresa.
+            </p>
+            <div class="intro__values">
+              <div class="intro__value">
+                <div class="intro__value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+                </div>
+                <div>
+                  <h4>Especialización por sector</h4>
+                  <p>Corporate, MICE y Sport: cada equipo conoce tu industria.</p>
+                </div>
+              </div>
+              <div class="intro__value">
+                <div class="intro__value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                  <h4>Tecnología + trato humano</h4>
+                  <p>App propia, reporting y un gestor personal siempre disponible.</p>
+                </div>
+              </div>
+              <div class="intro__value">
+                <div class="intro__value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <h4>Compromiso sostenible</h4>
+                  <p>Medimos y compensamos la huella ambiental de cada viaje.</p>
+                </div>
+              </div>
+              <div class="intro__value">
+                <div class="intro__value-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </div>
+                <div>
+                  <h4>Tarifas negociadas</h4>
+                  <p>Acceso a precios exclusivos sin comisiones ocultas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diagonal divider: intro white → stats dark -->
+    <div class="section-divider section-divider--white-to-dark" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         STATS — OSCURO · números que demuestran
+         Salto a dark: contraste visual, impacto de datos
+    ══════════════════════════════════════════════════════ -->
+    <div class="stats" aria-label="Datos clave de Wamaw">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat reveal">
+            <div class="stat__number">
+              <span data-count="3" data-suffix="+">3+</span>
+            </div>
+            <div class="stat__label">Años gestionando<br>la movilidad empresarial</div>
+          </div>
+          <div class="stat reveal reveal-delay-1">
+            <div class="stat__number">
+              24<sup>h</sup>
+            </div>
+            <div class="stat__label">Disponibilidad total<br>365 días al año</div>
+          </div>
+          <div class="stat reveal reveal-delay-2">
+            <div class="stat__number">
+              <span data-count="3" data-suffix="">3</span>
+            </div>
+            <div class="stat__label">Divisiones<br>especializadas</div>
+          </div>
+          <div class="stat reveal reveal-delay-3">
+            <div class="stat__number">
+              <span data-count="100" data-suffix="%">100%</span>
+            </div>
+            <div class="stat__label">Servicio a medida<br>para cada empresa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagonal divider: stats dark → services white -->
+    <div class="section-divider section-divider--dark-to-white" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SERVICES — BLANCO · tres divisiones Wamaw
+         Segundo salto a blanco: sección de producto clara y legible
+    ══════════════════════════════════════════════════════ -->
+    <section class="section" id="servicios" style="background:#fff;">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="label">Nuestros servicios</span>
+          <h2>Tres divisiones, <span class="text-primary">una sola agencia</span></h2>
+          <div class="divider divider--center"></div>
+          <p style="color:var(--c-gray-500);">
+            Cada división está especializada en su ámbito para ofrecerte el nivel de expertise
+            que tu empresa necesita, con un único punto de contacto y la misma calidad de servicio.
+          </p>
+        </div>
+
+        <!-- Magic Cards: gradiente spotlight sigue al cursor -->
+        <div class="services__grid">
+
+          <!-- Wamaw Corporate -->
+          <article class="magic-card service-card reveal reveal-delay-1">
+            <div class="magic-card__spotlight" aria-hidden="true"></div>
+            <div class="service-img--corporate service-img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <div class="service-card__body">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              </div>
+              <h3>Wamaw Corporate</h3>
+              <p>Gestión integral de viajes de empresa: vuelos, hoteles, coches y mucho más.
+                 Tu gestor personal y nuestra app de empresa siempre a tu lado.</p>
+              <div class="service-card__tags">
+                <span class="service-card__tag">Vuelos y hoteles</span>
+                <span class="service-card__tag">App de empresa</span>
+                <span class="service-card__tag">Visados</span>
+                <span class="service-card__tag">Informes de gestión</span>
+                <span class="service-card__tag">Soporte 24h</span>
+              </div>
+              <a href="contactanos.html?servicio=corporate" class="service-card__link">
+                Cuéntanos qué necesitas
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Wamaw MICE -->
+          <article class="magic-card service-card reveal reveal-delay-2">
+            <div class="magic-card__spotlight" aria-hidden="true"></div>
+            <div class="service-img--mice service-img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="service-card__body">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+              </div>
+              <h3>Wamaw MICE</h3>
+              <p>Diseñamos y gestionamos eventos corporativos, incentivos, congresos y
+                 actividades de team building que dejan huella en tus equipos y clientes.</p>
+              <div class="service-card__tags">
+                <span class="service-card__tag">Reuniones</span>
+                <span class="service-card__tag">Incentivos</span>
+                <span class="service-card__tag">Congresos</span>
+                <span class="service-card__tag">Team Building</span>
+                <span class="service-card__tag">Eventos</span>
+              </div>
+              <a href="contactanos.html?servicio=mice" class="service-card__link">
+                Planifica tu próximo evento
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Wamaw Sport -->
+          <article class="magic-card service-card reveal reveal-delay-3">
+            <div class="magic-card__spotlight" aria-hidden="true"></div>
+            <div class="service-img--sport service-img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="service-card__body">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+              </div>
+              <h3>Wamaw Sport</h3>
+              <p>Turismo deportivo especializado para equipos y organizaciones:
+                 desplazamientos a competiciones, concentraciones y experiencias únicas ligadas al deporte.</p>
+              <div class="service-card__tags">
+                <span class="service-card__tag">Viajes de equipo</span>
+                <span class="service-card__tag">Competiciones</span>
+                <span class="service-card__tag">Concentraciones</span>
+                <span class="service-card__tag">Experiencias Sport</span>
+              </div>
+              <a href="contactanos.html?servicio=sport" class="service-card__link">
+                Gestiona tu equipo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Diagonal divider: services white → why dark-mid -->
+    <div class="section-divider section-divider--white-to-dark" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         WHY WAMAW — OSCURO · diferenciales
+         Salto a dark-mid: sección de autoridad y diferenciación
+    ══════════════════════════════════════════════════════ -->
+    <section class="section why section--dark-mid" id="diferencial">
+      <div class="container">
+        <div class="section__header reveal" style="color:#fff;">
+          <span class="label label--white">Por qué Wamaw</span>
+          <h2 style="color:#fff;">Inteligencia empresarial<br><span class="text-primary">aplicada al viaje</span></h2>
+          <div class="divider divider--center"></div>
+          <p style="color:rgba(255,255,255,.55);">
+            No somos una agencia más. Somos el partner estratégico de movilidad que tu empresa necesita
+            para operar con eficiencia, control y sostenibilidad.
+          </p>
+        </div>
+        <div class="why__grid">
+          <div class="why-card reveal reveal-delay-1">
+            <div class="why-card__num" aria-hidden="true">01</div>
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3>Tecnología que trabaja para ti</h3>
+            <p>App móvil de empresa, reporting en tiempo real, conciliaciones automáticas y
+               alertas inteligentes. Toda la información de tus viajes en un solo lugar,
+               con el respaldo humano de tu gestor personal.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-2">
+            <div class="why-card__num" aria-hidden="true">02</div>
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3>Sostenibilidad con datos reales</h3>
+            <p>Medimos la huella ambiental de cada desplazamiento y ofrecemos alternativas
+               sostenibles. Tu empresa puede tomar decisiones de viaje responsables
+               con métricas claras y transparentes.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-3">
+            <div class="why-card__num" aria-hidden="true">03</div>
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <h3>Tarifas negociadas, sin sorpresas</h3>
+            <p>Acceso a tarifas low-cost y corporativas negociadas directamente.
+               Facturación centralizada y personalizada según las necesidades de
+               tu empresa, sin comisiones ocultas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diagonal divider: why dark-mid → process white -->
+    <div class="section-divider section-divider--dark-to-white" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         HOW WE WORK — BLANCO · proceso en 4 pasos
+         Tercer salto a blanco: claridad de proceso, genera confianza
+    ══════════════════════════════════════════════════════ -->
+    <section class="section process" id="proceso" style="background:#fff;">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="label">Cómo trabajamos</span>
+          <h2>Del briefing a la<br><span class="text-primary">mejora continua</span></h2>
+          <div class="divider divider--center"></div>
+          <p style="color:var(--c-gray-500);">
+            Un proceso diseñado para que no tengas que preocuparte de nada.
+            Tu empresa en movimiento, con Wamaw siempre cerca.
+          </p>
+        </div>
+        <div class="process__steps">
+          <div class="step reveal reveal-delay-1">
+            <div class="step__num">1</div>
+            <h4>Cuéntanos qué necesitas</h4>
+            <p>Nos explicas los viajes o eventos de tu empresa. Sin formularios infinitos, directamente con tu gestor.</p>
+          </div>
+          <div class="step reveal reveal-delay-2">
+            <div class="step__num">2</div>
+            <h4>Te presentamos opciones a medida</h4>
+            <p>Preparamos una propuesta personalizada con las mejores tarifas y alternativas para tu empresa.</p>
+          </div>
+          <div class="step reveal reveal-delay-3">
+            <div class="step__num">3</div>
+            <h4>Confirmas y nosotros gestionamos</h4>
+            <p>Te encargamos el 100% de la operativa. Reservas, cambios, incidencias: nuestro equipo 24h lo resuelve.</p>
+          </div>
+          <div class="step reveal reveal-delay-4">
+            <div class="step__num">4</div>
+            <h4>Informes y mejora continua</h4>
+            <p>Recibes reporting completo para tomar decisiones inteligentes y optimizar la política de viajes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accent strip: white → teal-pale (subtle line separator) -->
+    <div class="accent-strip" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         PRESS — TEAL PALE · apariciones en prensa
+         Salto a teal-pale: suave, diferente, refuerza credibilidad
+    ══════════════════════════════════════════════════════ -->
+    <section class="section section--teal-pale press" id="prensa">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="label">Wamaw en los medios</span>
+          <h2>La prensa <span class="text-primary">nos avala</span></h2>
+          <div class="divider divider--center"></div>
+        </div>
+        <div class="press__grid">
+          <a href="medios.html" class="press-card reveal reveal-delay-1" aria-label="Leer artículo en Tres60.Travel">
+            <div class="press-card__source">
+              <span class="press-card__source-name">Tres60.Travel</span>
+              <span class="press-card__date">04 Mar 2025</span>
+            </div>
+            <h3 class="press-card__title">
+              "Nuevas tecnologías y especialización: el futuro de las agencias de viajes"
+            </h3>
+            <div class="press-card__by">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Entrevista a Alberto Mendiola, CEO de Wamaw
+            </div>
+            <span class="press-card__link">
+              Ver en medios
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+          <a href="medios.html" class="press-card reveal reveal-delay-2" aria-label="Leer artículo en Hosteltur">
+            <div class="press-card__source">
+              <span class="press-card__source-name">Hosteltur</span>
+              <span class="press-card__date">25 Feb 2025</span>
+            </div>
+            <h3 class="press-card__title">
+              "Agencias: cómo impulsar nuevos modelos de negocio y afrontar la sucesión"
+            </h3>
+            <div class="press-card__by">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Por Carmen Porras · Hosteltur
+            </div>
+            <span class="press-card__link">
+              Ver en medios
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+          <a href="medios.html" class="press-card reveal reveal-delay-3" aria-label="Leer artículo en Evento Plus">
+            <div class="press-card__source">
+              <span class="press-card__source-name">Evento Plus</span>
+              <span class="press-card__date">16 Mar 2022</span>
+            </div>
+            <h3 class="press-card__title">
+              "Alejandro Martín y Alberto Mendiola fundan Wamaw Travel"
+            </h3>
+            <div class="press-card__by">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Por Paula Rey · Evento Plus
+            </div>
+            <span class="press-card__link">
+              Ver en medios
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diagonal divider: press teal-pale → CTA dark -->
+    <div class="section-divider section-divider--pale-to-dark" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════════════════════
+         CTA FINAL — OSCURO · conversión
+         Salto final a dark: impacto máximo antes del footer
+    ══════════════════════════════════════════════════════ -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="cta-section__bg" aria-hidden="true"></div>
+      <div class="cta-section__grid-overlay" aria-hidden="true"></div>
+      <div class="container cta-section__content">
+        <span class="label-shiny reveal">¿Lista tu empresa para moverse mejor?</span>
+        <h2 id="cta-heading" class="reveal reveal-delay-1">
+          Cuéntanos qué necesita<br>
+          <span class="aurora-text">tu empresa</span>
+        </h2>
+        <p class="reveal reveal-delay-2">
+          Sin compromiso. Sin formularios interminables. Solo una conversación para entender
+          cómo podemos ayudarte.
+        </p>
+        <div class="cta-section__actions reveal reveal-delay-3">
+          <a href="contactanos.html" class="btn-hover" role="button">
+            <div class="btn-hover__inner">
+              <div class="btn-hover__dot"></div>
+              <span>Solicitar propuesta gratuita</span>
+            </div>
+            <div class="btn-hover__overlay">
+              <span>Solicitar propuesta gratuita</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+          <a href="#servicios" class="btn btn-ghost">Ver nuestros servicios</a>
+        </div>
+        <p class="cta-section__email reveal reveal-delay-4">
+          O escríbenos directamente a
+          <a href="mailto:info@wamawtravel.com">info@wamawtravel.com</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER — más oscuro aún · cierre de página
+  ══════════════════════════════════════════════════════ -->
+  <footer class="footer" aria-label="Pie de página">
+    <div class="container">
+      <div class="footer__top">
+        <!-- Brand column -->
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Wamaw Travel Group">
+            <img src="https://wamawtravel.com/wp-content/uploads/2021/11/Logo-3.png" alt="Wamaw Travel Group" />
+          </a>
+          <p>Agencia de viajes corporativos, MICE y Sport. Tecnología de última generación con el trato cercano que merece tu empresa. <em>Nos sentirás siempre cerca.</em></p>
+          <div class="footer__socials" aria-label="Redes sociales">
+            <a href="https://www.instagram.com/wamawtravel/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/wamaw-travel/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.facebook.com/wamawtravel" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com/wamawtravel" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.738l7.737-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services column -->
+        <nav class="footer__col" aria-label="Servicios">
+          <h5>Servicios</h5>
+          <ul>
+            <li><a href="contactanos.html?servicio=corporate">Wamaw Corporate</a></li>
+            <li><a href="contactanos.html?servicio=mice">Wamaw MICE</a></li>
+            <li><a href="contactanos.html?servicio=sport">Wamaw Sport</a></li>
+            <li><a href="#diferencial">Por qué Wamaw</a></li>
+            <li><a href="#proceso">Cómo trabajamos</a></li>
+          </ul>
+        </nav>
+
+        <!-- Company column -->
+        <nav class="footer__col" aria-label="Empresa">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#nosotros">Así somos</a></li>
+            <li><a href="medios.html">Medios</a></li>
+            <li><a href="medios.html#fundadores">Fundadores</a></li>
+            <li><a href="https://wamawtravel.com/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso legal</a></li>
+            <li><a href="https://wamawtravel.com/politica-de-privacidad/" target="_blank" rel="noopener noreferrer">Privacidad</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contact column -->
+        <div class="footer__col">
+          <h5>Contacto</h5>
+          <ul>
+            <li>
+              <a href="mailto:info@wamawtravel.com">info@wamawtravel.com</a>
+            </li>
+            <li style="color:rgba(255,255,255,.35);font-size:.82rem;line-height:1.5;">
+              Lun–Vie · 9h a 19h<br>
+              Emergencias 24h · 365 días
+            </li>
+            <li style="margin-top:12px;">
+              <a href="contactanos.html" class="btn btn-primary btn-sm">Habla con nosotros</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 Wamaw Travel Group. Todos los derechos reservados.</p>
+        <div class="footer__legal">
+          <a href="https://wamawtravel.com/politica-de-privacidad/" target="_blank" rel="noopener noreferrer">Privacidad</a>
+          <a href="https://wamawtravel.com/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso legal</a>
+          <a href="https://wamawtravel.com/proteccion-de-datos/" target="_blank" rel="noopener noreferrer">Protección de datos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
