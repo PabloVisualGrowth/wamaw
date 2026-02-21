@@ -151,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('wheel', handleInteraction, { passive: true })
     window.addEventListener('touchmove', handleInteraction, { passive: true })
     window.addEventListener('keydown', handleInteraction)
+    if (globeWrap) {
+      globeWrap.addEventListener('click', fadeGlobeShowCTA)
+    }
 
     // Initialization check
     if (window.createGlobe) {

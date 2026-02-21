@@ -407,7 +407,7 @@ p {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--c-dark);
+  background: var(--c-primary);
   flex-shrink: 0;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2640,6 +2640,20 @@ p {
 
   .stats__grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .preloader-logo-img {
+    height: 120px !important;
+  }
+
+  .preloader__cta {
+    padding: 24px 20px;
+    max-width: 90%;
+  }
+
+  .cta-heading {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
   }
 }
 
