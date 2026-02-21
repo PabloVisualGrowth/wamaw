@@ -2748,9 +2748,11 @@ p {
 /* ── REFINED LOGO WITH EXACT ASPECT RATIO ── */
 .preloader__logo {
   position: absolute;
-  top: 50%;
+  top: 10%;
+  /* Back to the top of the globe */
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* Shift slightly to the right to visually compensate for the right-heavy transparent spacing inside the PNG asset */
+  transform: translateX(calc(-50% + 22px));
   z-index: 10;
   pointer-events: none;
   display: flex;
