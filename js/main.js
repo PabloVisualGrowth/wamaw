@@ -357,99 +357,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ── MORPHING TEXT (Magic UI Style) ───────────────────── */
-  const initMorphingText = () => {
-    const el = document.getElementById('morphing-text')
-    if (!el) return
+  /* ── WORD ROTATE ──────────────────────────────────────── */
+  const wordRotateContainers = document.querySelectorAll('.word-rotate')
+  wordRotateContainers.forEach(container => {
+    const words = container.querySelectorAll('.word-rotate__word')
+    if (words.length <= 1) return
 
-    const texts = [
-      "corporativa",
-      "MICE",
-      "Sport",
-      "personalizada",
-      "segura",
-      "eficiente"
-    ]
+    let currentIndex = 0
+    setInterval(() => {
+      const currentWord = words[currentIndex]
 
-    const morphTime = 1.5
-    const cooldownTime = 0.5
+      currentWord.classList.remove('word-rotate__word--active')
+      currentWord.classList.add('word-rotate__word--out')
 
-    let textIndex = texts.length - 1
-    let time = new Date()
-    let morph = 0
-    let cooldown = cooldownTime
+      currentIndex = (currentIndex + 1) % words.length
+      const nextWord = words[currentIndex]
 
-    el.innerHTML = "" // Clear initial
-    const span1 = document.createElement("span")
-    span1.className = "morph-word"
-    const span2 = document.createElement("span")
-    span2.className = "morph-word"
-    el.appendChild(span1)
-    el.appendChild(span2)
+      nextWord.classList.remove('word-rotate__word--out')
 
-    span1.textContent = texts[textIndex % texts.length]
-    span2.textContent = texts[(textIndex + 1) % texts.length]
-
-    function doMorph() {
-      morph -= cooldown
-      cooldown = 0
-
-      let s = morph / morphTime
-
-      if (s > 1) {
-        cooldown = cooldownTime
-        s = 1
-      }
-
-      setMorph(s)
-    }
-
-    function setMorph(s) {
-      span2.style.filter = `blur(${Math.min(8 / s - 8, 100)}px)`
-      span2.style.opacity = `${Math.pow(s, 0.4) * 100}%`
-
-      s = 1 - s
-      span1.style.filter = `blur(${Math.min(8 / s - 8, 100)}px)`
-      span1.style.opacity = `${Math.pow(s, 0.4) * 100}%`
-
-      span1.textContent = texts[textIndex % texts.length]
-      span2.textContent = texts[(textIndex + 1) % texts.length]
-    }
-
-    function doCooldown() {
-      morph = 0
-
-      span2.style.filter = ""
-      span2.style.opacity = "100%"
-
-      span1.style.filter = ""
-      span1.style.opacity = "0%"
-    }
-
-    function animate() {
-      requestAnimationFrame(animate)
-
-      let newTime = new Date()
-      let shouldIncrementIndex = cooldown > 0
-      let dt = (newTime - time) / 1000
-      time = newTime
-
-      cooldown -= dt
-
-      if (cooldown <= 0) {
-        if (shouldIncrementIndex) {
-          textIndex++
-        }
-
-        doMorph()
-      } else {
-        doCooldown()
-      }
-    }
-
-    animate()
-  }
-
-  initMorphingText()
+      setTimeout(() => {
+        nextWord.classList.add('word-rotate__word--active')
+      }, 50)
+    }, 2500)
+  })
 
 })

@@ -620,30 +620,6 @@ p {
   background: var(--c-dark);
 }
 
-#morphing-text {
-  position: relative;
-  display: inline-block;
-  min-width: 200px;
-  /* Evita saltos de layout */
-  text-align: left;
-  filter: url(#threshold);
-}
-
-.morph-word {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: inline-block;
-  user-select: none;
-  opacity: 0;
-}
-
-.morph-word:first-child {
-  position: relative;
-  /* El primero da el tamaño */
-}
-
 .hero__video {
   position: absolute;
   inset: 0;
@@ -2938,4 +2914,37 @@ p {
 
 .preloader__cta-actions .btn-text:hover {
   color: white;
+}
+
+/* ── WORD ROTATE EFFECT ── */
+.word-rotate {
+  display: inline-grid;
+  vertical-align: bottom;
+  text-align: left;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+}
+
+.text-blue {
+  color: var(--c-primary);
+  /* Matching Wamaw branding teal/blue */
+}
+
+.word-rotate__word {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(100%);
+  white-space: nowrap;
+}
+
+.word-rotate__word--active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.word-rotate__word--out {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
