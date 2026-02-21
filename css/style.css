@@ -2748,9 +2748,9 @@ p {
 /* ── REFINED LOGO WITH EXACT ASPECT RATIO ── */
 .preloader__logo {
   position: absolute;
-  top: 10%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 10;
   pointer-events: none;
   display: flex;
