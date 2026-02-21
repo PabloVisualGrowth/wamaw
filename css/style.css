@@ -1213,15 +1213,18 @@ p {
   left: calc(12.5% + 12px);
   right: -5px;
   /* Slight overlap for seamless connection */
-  height: 2px;
+  height: 3px;
+  /* Slightly thicker for a more "marked" look */
   background: linear-gradient(90deg,
       var(--c-primary) 0%,
-      var(--c-primary-light) 25%,
-      rgba(11, 180, 170, 0.3) 60%,
+      var(--c-primary) 35%,
+      /* Solid for longer */
+      rgba(11, 180, 170, 0.5) 75%,
       transparent 100%);
-  filter: blur(2.5px);
-  /* More diffused/misty */
-  opacity: 0.8;
+  filter: blur(1.5px);
+  /* Less misty, more defined */
+  opacity: 1;
+  /* Full visibility */
   z-index: 0;
 }
 
@@ -2453,8 +2456,10 @@ p {
   position: absolute;
   left: 0;
   right: 0;
-  top: -1px;
-  height: calc(100% + 2px);
+  top: -2px;
+  /* Increased overlap */
+  height: calc(100% + 4px);
+  /* Increased overlap */
   z-index: 1;
 }
 
@@ -2751,8 +2756,8 @@ p {
   top: 10%;
   /* Back to the top of the globe */
   left: 50%;
-  /* Shift slightly to the right to visually compensate for the right-heavy transparent spacing inside the PNG asset */
-  transform: translateX(calc(-50% + 22px));
+  /* Visually compensated horizontal offset (fine-tuned from 22px to 11px) */
+  transform: translateX(calc(-50% + 11px));
   z-index: 10;
   pointer-events: none;
   display: flex;
