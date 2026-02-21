@@ -145,9 +145,9 @@
             <span class="label-shiny">Agencia de viajes corporativos · MICE · Sport</span>
           </div>
 
-          <!-- H1: word rotate en "viajes [word]" -->
+          <!-- H1: Morphing Text in "La movilidad corporativa" -->
           <h1 class="hero__title blur-in blur-in-d1">
-            La movilidad corporativa<br>
+            La movilidad <span id="morphing-text">corporativa</span><br>
             en las mejores manos
           </h1>
 
@@ -808,7 +808,7 @@
           cómo podemos ayudarte.
         </p>
         <div class="cta-section__actions reveal reveal-delay-3">
-          <a href="contactanos.html" class="btn-hover" role="button">
+          <a href="contactanos.html" class="btn-hover btn-hover--white" role="button">
             <div class="btn-hover__inner">
               <div class="btn-hover__dot"></div>
               <span>Solicitar propuesta gratuita</span>
@@ -945,6 +945,18 @@
       </div>
     </div>
   </footer>
+
+  <!-- SVG Filter for Morphing Text -->
+  <svg id="filters" style="display: none;">
+    <defs>
+      <filter id="threshold">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+									0 1 0 0 0
+									0 0 1 0 0
+									0 0 0 255 -140" />
+      </filter>
+    </defs>
+  </svg>
 
   <script src="js/main.js" defer></script>
 </body>

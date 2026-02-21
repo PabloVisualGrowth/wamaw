@@ -620,6 +620,30 @@ p {
   background: var(--c-dark);
 }
 
+#morphing-text {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+  /* Evita saltos de layout */
+  text-align: left;
+  filter: url(#threshold);
+}
+
+.morph-word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: inline-block;
+  user-select: none;
+  opacity: 0;
+}
+
+.morph-word:first-child {
+  position: relative;
+  /* El primero da el tamaño */
+}
+
 .hero__video {
   position: absolute;
   inset: 0;
