@@ -382,6 +382,14 @@ p {
   cursor: pointer;
   border: none;
   text-align: center;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+/* Variante Blanca: fondo blanco, texto teal, reactive (dot) oscuro */
+.btn-hover--white {
+  background: var(--c-white);
+  color: var(--c-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .btn-hover__inner {
@@ -402,21 +410,34 @@ p {
   opacity: 0;
 }
 
-/* El dot se expande para cubrir el botón */
+/* El dot se expande para cubrir el botón — AHORA BLANCO por defecto */
 .btn-hover__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--c-primary);
+  background: var(--c-white);
   flex-shrink: 0;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hover--white .btn-hover__dot {
+  background: var(--c-dark);
 }
 
 .btn-hover:hover .btn-hover__dot {
   transform: scale(150);
 }
 
-/* Overlay entra desde la derecha */
+.btn-hover:hover .btn-hover__overlay {
+  transform: translateX(-5px);
+  opacity: 1;
+  color: var(--c-primary);
+}
+
+.btn-hover--white:hover .btn-hover__overlay {
+  color: var(--c-white);
+}
+
 .btn-hover__overlay {
   position: absolute;
   inset: 0;
@@ -426,12 +447,7 @@ p {
   gap: 8px;
   transform: translateX(48px);
   opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.btn-hover:hover .btn-hover__overlay {
-  transform: translateX(-5px);
-  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
 }
 
 .btn-hover__overlay svg {
