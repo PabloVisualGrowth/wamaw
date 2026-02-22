@@ -536,7 +536,7 @@ p {
 }
 
 .nav__cta {
-  margin-left: 8px;
+  margin-left: auto;
 }
 
 .nav__cta .btn {
