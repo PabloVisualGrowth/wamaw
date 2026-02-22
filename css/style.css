@@ -2622,6 +2622,78 @@ p {
 
   .process__steps {
     grid-template-columns: 1fr;
+    gap: 0;
+    padding-left: 0;
+  }
+
+  /* Hide horizontal trail line and plane on mobile */
+  .process__steps::before,
+  .process__steps::after {
+    display: none;
+  }
+
+  /* Each step: left-aligned with icon on the left, content centered */
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 20px;
+    row-gap: 4px;
+    text-align: left;
+    padding: 0 0 0 16px;
+    position: relative;
+  }
+
+  /* Number circle */
+  .step__num {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Title */
+  .step h4 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+
+  /* Text */
+  .step p {
+    grid-column: 2;
+    grid-row: 2;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+  }
+
+  /* Vertical connector line between steps */
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(16px + 25px);
+    /* left padding + half of 52px circle */
+    top: 52px;
+    /* below the number circle */
+    bottom: -20px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--c-primary), rgba(11, 180, 170, 0.2));
+    z-index: 0;
+  }
+
+  /* Spacing between steps */
+  .step {
+    padding-bottom: 40px;
+  }
+
+  .step:last-child {
+    padding-bottom: 0;
   }
 
   .quotes__grid {
