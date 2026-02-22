@@ -2595,6 +2595,33 @@ p {
     gap: 48px;
   }
 
+  /* Center hero on mobile (desktop has left-offset) */
+  .hero .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    text-align: center;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__badge {
+    display: flex;
+    justify-content: center;
+  }
+
   .intro__values {
     grid-template-columns: 1fr;
   }
