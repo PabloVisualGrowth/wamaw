@@ -2777,6 +2777,29 @@ p {
   }
 }
 
+/* ── WATERMARK ──────────────────────────────────────────────── */
+.watermark {
+  position: fixed;
+  bottom: 18px;
+  right: 20px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.watermark:hover {
+  opacity: 0.6;
+}
+
+.watermark img {
+  height: 28px;
+  width: auto;
+  display: block;
+  filter: grayscale(30%);
+}
+
 @media (max-width: 480px) {
   .hero__actions {
     flex-direction: column;
