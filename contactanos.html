@@ -5,22 +5,303 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Contacta con NEXO Travel Group. Cuéntanos qué necesita tu empresa y te presentamos una propuesta personalizada de viajes corporativos, MICE o Sport." />
-  <title>Contáctanos · NEXO Travel Group</title>
+    content="Habla con NEXO empezando por un autodiagnóstico gratuito de 2 minutos: 15 preguntas que revelan cuánto coste, tiempo y control pierde tu empresa en cada viaje — y cómo recuperarlo en 90 días." />
+  <title>Contacto · Autodiagnóstico de Movilidad [Gratis · 2 min] · NEXO</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── DIAGNÓSTICO (scorecard) ── */
+    .dx {
+      min-height: 100vh;
+      background:
+        radial-gradient(120% 80% at 50% -10%, rgba(11, 180, 170, .12), transparent 60%),
+        var(--c-dark);
+      padding: 120px 0 90px;
+      display: flex;
+      align-items: center;
+    }
+
+    .dx__shell { max-width: 760px; margin: 0 auto; width: 100%; }
+
+    .dx__crumbs {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .4);
+      margin-bottom: 26px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dx__crumbs a { color: rgba(255, 255, 255, .55); text-decoration: none; }
+    .dx__crumbs a:hover { color: var(--c-primary-light); }
+
+    .dx__progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .dx__bar {
+      flex: 1;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .1);
+      overflow: hidden;
+    }
+
+    .dx__bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--c-primary-deep), var(--c-primary), var(--c-primary-light));
+      transition: width .5s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .dx__count {
+      font-size: .85rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .6);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .dx__card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .015));
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 24px;
+      padding: clamp(28px, 5vw, 48px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+    }
+
+    .dx__block-tag {
+      display: inline-block;
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--c-primary-light);
+      margin-bottom: 16px;
+    }
+
+    .dx__q {
+      font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin: 0 0 28px;
+      letter-spacing: -.01em;
+      text-wrap: balance;
+    }
+
+    .dx__options { display: flex; flex-direction: column; gap: 12px; }
+
+    .dx__opt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      text-align: left;
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .02);
+      color: rgba(255, 255, 255, .9);
+      font-size: 1.02rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color .2s, background .2s, transform .12s;
+      font-family: inherit;
+    }
+
+    .dx__opt:hover {
+      border-color: var(--c-primary);
+      background: rgba(11, 180, 170, .08);
+      transform: translateY(-1px);
+    }
+
+    .dx__opt.is-selected { border-color: var(--c-primary); background: rgba(11, 180, 170, .14); }
+
+    .dx__opt-mark {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, .3);
+      display: grid;
+      place-items: center;
+      transition: border-color .2s, background .2s;
+    }
+
+    .dx__opt.is-selected .dx__opt-mark { border-color: var(--c-primary); background: var(--c-primary); }
+    .dx__opt-mark svg { width: 13px; height: 13px; color: #04201e; opacity: 0; transition: opacity .2s; }
+    .dx__opt.is-selected .dx__opt-mark svg { opacity: 1; }
+
+    .dx__textarea {
+      width: 100%;
+      min-height: 120px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .03);
+      color: #fff;
+      padding: 16px 18px;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .dx__textarea:focus { outline: none; border-color: var(--c-primary); }
+
+    .dx__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      gap: 16px;
+    }
+
+    .dx__back {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, .55);
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 4px;
+    }
+
+    .dx__back:hover { color: #fff; }
+    .dx__back[disabled] { opacity: 0; pointer-events: none; }
+    .dx__hint { font-size: .85rem; color: rgba(255, 255, 255, .4); }
+
+    /* results */
+    .dx__result { text-align: center; }
+
+    .dx__score-ring { width: 200px; height: 200px; margin: 0 auto 8px; position: relative; }
+
+    .dx__score-num {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 3.4rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .dx__score-num small {
+      display: block;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--c-primary-light);
+      margin-top: 6px;
+    }
+
+    .dx__result h2 {
+      color: #fff;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      margin: 18px 0 10px;
+    }
+
+    .dx__result-lead {
+      color: rgba(255, 255, 255, .7);
+      max-width: 540px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .dx__insights {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+      margin-bottom: 38px;
+    }
+
+    .dx__insight {
+      display: flex;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .dx__insight svg { flex-shrink: 0; width: 24px; height: 24px; color: var(--c-primary); margin-top: 2px; }
+    .dx__insight h4 { color: #fff; margin: 0 0 4px; font-size: 1.05rem; }
+    .dx__insight p { color: rgba(255, 255, 255, .65); margin: 0; font-size: .95rem; line-height: 1.55; }
+
+    .dx__cta-box {
+      background: linear-gradient(160deg, rgba(11, 180, 170, .14), rgba(11, 180, 170, .04));
+      border: 1px solid rgba(11, 180, 170, .3);
+      border-radius: 18px;
+      padding: clamp(26px, 4vw, 40px);
+      text-align: left;
+    }
+
+    .dx__cta-box h3 { color: #fff; font-size: clamp(1.3rem, 3vw, 1.7rem); margin: 0 0 10px; }
+    .dx__cta-box p { color: rgba(255, 255, 255, .72); margin: 0 0 24px; line-height: 1.55; }
+
+    /* lead form */
+    .dx__lead { display: flex; flex-direction: column; gap: 14px; }
+    .dx__lead-row { display: flex; gap: 14px; }
+    .dx__lead-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 15px 16px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .04);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .dx__lead-row input::placeholder { color: rgba(255, 255, 255, .42); }
+    .dx__lead-row input:focus { outline: none; border-color: var(--c-primary); background: rgba(11, 180, 170, .06); }
+    .dx__lead .btn-hover { width: 100%; margin-top: 4px; }
+
+    .dx__success {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    .dx__success svg {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      border-radius: 50%;
+      background: var(--c-primary);
+      color: #04201e;
+    }
+
+    .is-hidden-dx { display: none !important; }
+
+    @media (max-width: 600px) {
+      .dx { padding: 100px 0 70px; }
+      .dx__opt { padding: 15px 16px; font-size: .96rem; }
+      .dx__lead-row { flex-direction: column; }
+    }
+  </style>
 </head>
 
 <body>
 
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- ══════════════════════════════════════════════════════
-       NAV — siempre scrolled en páginas internas
-  ══════════════════════════════════════════════════════ -->
   <nav class="nav nav--scrolled" aria-label="Navegación principal">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="NEXO Travel Group — inicio">
-        <img src="img/nexo-logo.png" alt="NEXO Travel Group" />
+      <a href="index.html" class="nav__logo" aria-label="NEXO — inicio">
+        <img src="img/nexo-logo.png" alt="NEXO" />
       </a>
       <ul class="nav__links" role="list">
         <li><a href="index.html#servicios">Servicios</a></li>
@@ -28,7 +309,6 @@
         <li><a href="index.html#proceso">Cómo trabajamos</a></li>
         <li><a href="medios.html">Medios</a></li>
       </ul>
-      <!-- CTA Removed for contact page -->
       <button class="nav__hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -41,342 +321,93 @@
     <a href="index.html#nosotros">Así somos</a>
     <a href="index.html#proceso">Cómo trabajamos</a>
     <a href="medios.html">Medios</a>
-    <!-- CTA Removed for contact page -->
   </div>
 
   <main>
-
-    <!-- ══════════════════════════════════════════════════════
-         PAGE HERO — OSCURO
-    ══════════════════════════════════════════════════════ -->
-    <section class="page-hero" aria-labelledby="contact-page-heading">
-      <div class="container page-hero__content">
-        <span class="label-shiny" style="margin-bottom:20px;display:inline-flex;">Contáctanos</span>
-        <h1 id="contact-page-heading">
-          Cuéntanos qué necesita<br>
-          <span class="aurora-text">tu empresa</span>
-        </h1>
-        <p>Sin compromiso. Sin formularios interminables.<br>
-          Solo una conversación para ayudarte a moverse mejor.</p>
-      </div>
-    </section>
-
-    <!-- Diagonal divider: hero dark → contact white -->
-    <div class="section-divider section-divider--dark-to-white" aria-hidden="true"></div>
-
-    <!-- ══════════════════════════════════════════════════════
-         CONTACT — BLANCO · info + formulario
-         Salto a blanco: el formulario respira y es accesible
-    ══════════════════════════════════════════════════════ -->
-    <section class="section" style="background:#fff;" aria-labelledby="form-heading">
+    <section class="dx">
       <div class="container">
-        <div class="contact__grid">
+        <div class="dx__shell">
 
-          <!-- Columna izquierda: datos de contacto -->
-          <aside class="reveal">
-            <h3>Estaremos encantados de atenderte</h3>
-            <p>Nuestro equipo está disponible para responder a cualquier consulta sobre viajes corporativos, eventos
-              MICE o turismo deportivo. Escríbenos o rellena el formulario.</p>
+          <nav class="dx__crumbs" aria-label="Migas de pan">
+            <a href="index.html">Inicio</a><span>›</span>
+            <span>Contacto · Autodiagnóstico</span>
+          </nav>
 
-            <div class="contact__detail">
-              <div class="contact__detail-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
+          <!-- QUIZ -->
+          <div id="dx-quiz">
+            <div class="dx__progress">
+              <div class="dx__bar"><div class="dx__bar-fill" id="dx-fill"></div></div>
+              <span class="dx__count" id="dx-count">1 / 15</span>
+            </div>
+
+            <div class="dx__card">
+              <span class="dx__block-tag" id="dx-block">Bloque 1 · Tu operativa actual</span>
+              <h2 class="dx__q" id="dx-question">Cargando…</h2>
+              <div class="dx__options" id="dx-options"></div>
+              <div class="dx__nav">
+                <button class="dx__back" id="dx-back" disabled>← Anterior</button>
+                <span class="dx__hint" id="dx-hint">Selecciona una opción para continuar</span>
               </div>
-              <div>
-                <div class="contact__detail-label">Email</div>
-                <div class="contact__detail-value">
-                  <a href="mailto:info@nexo.com" style="color:var(--c-primary);">info@nexo.com</a>
+            </div>
+          </div>
+
+          <!-- RESULTS -->
+          <div id="dx-results" class="dx__result is-hidden-dx">
+            <div class="dx__score-ring">
+              <svg viewBox="0 0 120 120" width="200" height="200" aria-hidden="true">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="10" />
+                <circle id="dx-ring" cx="60" cy="60" r="52" fill="none" stroke="url(#dxgrad)" stroke-width="10"
+                  stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+                  transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)" />
+                <defs>
+                  <linearGradient id="dxgrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#1a5c58" />
+                    <stop offset="0.5" stop-color="#0bb4aa" />
+                    <stop offset="1" stop-color="#5ec5bd" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="dx__score-num"><span id="dx-score">0</span>%<small>Eficiencia</small></div>
+            </div>
+
+            <h2 id="dx-verdict">Tu nivel de eficiencia</h2>
+            <p class="dx__result-lead" id="dx-verdict-text"></p>
+
+            <div class="dx__insights" id="dx-insights"></div>
+
+            <div class="dx__cta-box">
+              <h3 id="dx-cta-title"></h3>
+              <p id="dx-cta-text"></p>
+              <form id="dx-lead" class="dx__lead" novalidate>
+                <div class="dx__lead-row">
+                  <input type="text" name="nombre" placeholder="Nombre y apellidos" required />
+                  <input type="text" name="empresa" placeholder="Empresa" required />
                 </div>
-                <div class="contact__detail-sub">Te respondemos en menos de 24h</div>
-              </div>
-            </div>
-
-            <div class="contact__detail">
-              <div class="contact__detail-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <div>
-                <div class="contact__detail-label">Horario de atención</div>
-                <div class="contact__detail-value">Lunes a Viernes · 9h a 19h</div>
-                <div class="contact__detail-sub">Emergencias y urgencias: 24h · 365 días</div>
-              </div>
-            </div>
-
-            <div class="contact__detail">
-              <div class="contact__detail-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <div>
-                <div class="contact__detail-label">Especialidades</div>
-                <div class="contact__detail-value">NEXO Corporate · MICE · Sport</div>
-                <div class="contact__detail-sub">Cada división, un equipo experto</div>
-              </div>
-            </div>
-
-            <div class="contact__socials-wrap">
-              <h5>Síguenos</h5>
-              <div class="contact__socials" aria-label="Redes sociales">
-                <a href="https://www.instagram.com/nexo/" target="_blank" rel="noopener noreferrer"
-                  class="contact__social" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" />
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </a>
-                <a href="https://www.linkedin.com/company/nexo/" target="_blank" rel="noopener noreferrer"
-                  class="contact__social" aria-label="LinkedIn">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" aria-hidden="true">
-                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </a>
-                <a href="https://www.facebook.com/nexo" target="_blank" rel="noopener noreferrer"
-                  class="contact__social" aria-label="Facebook">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" aria-hidden="true">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                  </svg>
-                </a>
-                <a href="https://twitter.com/nexo" target="_blank" rel="noopener noreferrer"
-                  class="contact__social" aria-label="X / Twitter">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path
-                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.738l7.737-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </aside>
-
-          <!-- Columna derecha: formulario -->
-          <div class="reveal reveal-delay-2">
-            <div class="contact__form-wrap">
-              <h3 id="form-heading">Solicita tu propuesta</h3>
-              <p>Cuéntanos brevemente qué necesitas y te contactamos en menos de 24 horas.</p>
-
-              <form id="contact-form" novalidate>
-                <div class="form__fields">
-                  <div class="form__row">
-                    <div class="form__field">
-                      <label for="nombre">Nombre <span aria-hidden="true"
-                          style="color:var(--c-primary)">*</span></label>
-                      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required
-                        autocomplete="given-name" />
-                    </div>
-                    <div class="form__field">
-                      <label for="apellido">Apellido <span aria-hidden="true"
-                          style="color:var(--c-primary)">*</span></label>
-                      <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required
-                        autocomplete="family-name" />
-                    </div>
-                  </div>
-
-                  <div class="form__row">
-                    <div class="form__field">
-                      <label for="email">Email corporativo <span aria-hidden="true"
-                          style="color:var(--c-primary)">*</span></label>
-                      <input type="email" id="email" name="email" placeholder="nombre@empresa.com" required
-                        autocomplete="email" />
-                    </div>
-                    <div class="form__field">
-                      <label for="empresa">Empresa <span aria-hidden="true"
-                          style="color:var(--c-primary)">*</span></label>
-                      <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" required
-                        autocomplete="organization" />
-                    </div>
-                  </div>
-
-                  <div class="form__row">
-                    <div class="form__field">
-                      <label for="servicio">¿Qué necesitas?</label>
-                      <div class="form__select-wrap">
-                        <select id="servicio" name="servicio">
-                          <option value="">Selecciona un servicio</option>
-                          <option value="corporate">NEXO Corporate · Viajes de empresa</option>
-                          <option value="mice">NEXO MICE · Eventos e incentivos</option>
-                          <option value="sport">NEXO Sport · Turismo deportivo</option>
-                          <option value="varios">Varios servicios</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form__field">
-                      <label for="viajeros">Viajeros habituales</label>
-                      <div class="form__select-wrap">
-                        <select id="viajeros" name="viajeros">
-                          <option value="">Selecciona un rango</option>
-                          <option value="1-10">1 – 10 viajeros</option>
-                          <option value="11-50">11 – 50 viajeros</option>
-                          <option value="51-200">51 – 200 viajeros</option>
-                          <option value="200+">Más de 200 viajeros</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form__field">
-                    <label for="mensaje">Cuéntanos más <span aria-hidden="true"
-                        style="color:var(--c-primary)">*</span></label>
-                    <textarea id="mensaje" name="mensaje"
-                      placeholder="¿Qué necesita tu empresa? Cuantos más detalles, mejor te podremos ayudar."
-                      required></textarea>
-                  </div>
-
-                  <div class="form__check">
-                    <input type="checkbox" id="privacidad" name="privacidad" required />
-                    <label for="privacidad">
-                      He leído y acepto la
-                      <a href="https://nexo.com/politica-de-privacidad/" target="_blank"
-                        rel="noopener noreferrer">política de privacidad</a>
-                      de NEXO Travel Group.
-                    </label>
-                  </div>
-
-                  <button type="submit" class="btn-hover btn-lg form__submit"
-                    aria-label="Enviar solicitud de propuesta">
-                    <div class="btn-hover__inner">
-                      <div class="btn-hover__dot"></div>
-                      <span>Enviar solicitud</span>
-                    </div>
-                    <div class="btn-hover__overlay">
-                      <span>Enviar solicitud</span>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </button>
+                <div class="dx__lead-row">
+                  <input type="email" name="email" placeholder="Email profesional" required />
+                  <input type="tel" name="telefono" placeholder="Teléfono" required />
                 </div>
-
-                <!-- Mensaje de éxito (oculto por defecto) -->
-                <div class="form__success" aria-live="polite">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" aria-hidden="true">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <h4>¡Solicitud recibida!</h4>
-                  <p>Gracias por contactar con NEXO Travel Group.<br>
-                    Te responderemos en menos de 24 horas. <em>Nos sentirás siempre cerca.</em></p>
-                </div>
+                <button type="submit" class="btn-hover" role="button">
+                  <div class="btn-hover__inner">
+                    <div class="btn-hover__dot"></div>
+                    <span id="dx-cta-label">Enviar</span>
+                  </div>
+                  <div class="btn-hover__overlay">
+                    <span id="dx-cta-label2">Enviar</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </button>
               </form>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Accent strip: white → gray-50 -->
-    <div class="accent-strip" aria-hidden="true"></div>
-
-    <!-- ══════════════════════════════════════════════════════
-         FAQ — GRIS SUAVE · preguntas frecuentes
-         Salto a gris-50: pausa visual antes del CTA oscuro
-    ══════════════════════════════════════════════════════ -->
-    <section class="section faq" aria-labelledby="faq-heading">
-      <div class="container">
-        <div class="section__header reveal">
-          <span class="label">Preguntas frecuentes</span>
-          <h2 id="faq-heading">Resolvemos tus <span class="text-primary">dudas</span></h2>
-          <div class="divider divider--center"></div>
-        </div>
-        <div class="faq__list" role="list">
-
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-1">
-              ¿Cómo funciona la estructura de costes? ¿Hay comisiones ocultas?
-              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div class="faq__answer" id="faq-1" role="region">
-              <div class="faq__answer-inner">
-                En NEXO somos transparentes: no hay comisiones ocultas. Accedes a tarifas corporativas
-                y low-cost negociadas directamente, y la facturación se centraliza y personaliza según
-                las necesidades de tu empresa. Antes de cualquier gestión, tendrás toda la información
-                de costes clara y por escrito.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-2">
-              ¿Qué ocurre si surge una urgencia fuera del horario de oficina?
-              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div class="faq__answer" id="faq-2" role="region">
-              <div class="faq__answer-inner">
-                Nuestro servicio de atención es 24 horas, los 365 días del año. Si un viajero de tu
-                empresa tiene una incidencia a las 3 de la madrugada, nuestro equipo estará disponible
-                para resolverla. <em>Nos sentirás siempre cerca.</em>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-3">
-              ¿Gestionáis viajes internacionales y visados?
-              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div class="faq__answer" id="faq-3" role="region">
-              <div class="faq__answer-inner">
-                Sí. Gestionamos viajes nacionales e internacionales, incluyendo el asesoramiento y
-                tramitación de visados cuando es necesario. Nuestro equipo de NEXO Corporate se encarga
-                de toda la operativa para que tus viajeros solo tengan que preocuparse de viajar.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-4">
-              ¿Podéis gestionar eventos con un gran número de asistentes?
-              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div class="faq__answer" id="faq-4" role="region">
-              <div class="faq__answer-inner">
-                Absolutamente. NEXO MICE está especializado en la gestión de eventos de cualquier
-                escala: desde reuniones de equipo hasta congresos y eventos de incentivo para cientos
-                de personas. Diseñamos y gestionamos cada detalle de principio a fin.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-5">
-              ¿Ofrecéis informes de sostenibilidad de los viajes?
-              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div class="faq__answer" id="faq-5" role="region">
-              <div class="faq__answer-inner">
-                Sí. Medimos la huella ambiental de cada viaje y te proporcionamos informes detallados
-                de sostenibilidad. Así tu empresa puede tomar decisiones informadas y demostrar su
-                compromiso con el medioambiente ante clientes, inversores y equipos.
+              <div id="dx-success" class="dx__success is-hidden-dx">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>¡Gracias! Hemos recibido tu diagnóstico. Un especialista de NEXO te contacta en menos de
+                  24&nbsp;horas laborables.</span>
               </div>
             </div>
           </div>
@@ -384,40 +415,20 @@
         </div>
       </div>
     </section>
-
-    <!-- ══════════════════════════════════════════════════════
-         CTA ALTERNATIVO — TEAL PALE · invitación directa
-         Salto a teal-pale: diferente al oscuro, más suave y cercano
-    ══════════════════════════════════════════════════════ -->
-    <section class="section--sm section--teal-pale" style="padding:64px 0;" aria-labelledby="alt-cta-heading">
-      <div class="container" style="text-align:center;">
-        <h2 id="alt-cta-heading" style="margin-bottom:12px;">¿Prefieres hablar directamente?</h2>
-        <p style="color:var(--c-gray-500);margin-bottom:32px;font-size:1.05rem;">
-          Escríbenos a
-          <a href="mailto:info@nexo.com" style="color:var(--c-primary);font-weight:600;">info@nexo.com</a>
-          y te respondemos en menos de 24 horas.
-        </p>
-        <a href="index.html" class="btn btn-outline">Volver al inicio</a>
-      </div>
-    </section>
-
   </main>
 
-  <!-- ══════════════════════════════════════════════════════
-       FOOTER
-  ══════════════════════════════════════════════════════ -->
   <footer class="footer" aria-label="Pie de página">
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
-          <a href="index.html" class="footer__logo" aria-label="NEXO Travel Group">
-            <img src="img/nexo-logo.png" alt="NEXO Travel Group" />
+          <a href="index.html" class="footer__logo" aria-label="NEXO">
+            <img src="img/nexo-logo.png" alt="NEXO" />
           </a>
           <p>Agencia de viajes corporativos, MICE y Sport. Tecnología de última generación con el trato cercano que
             merece tu empresa. <em>Nos sentirás siempre cerca.</em></p>
           <div class="footer__socials" aria-label="Redes sociales">
-            <a href="https://www.instagram.com/nexo/" target="_blank" rel="noopener noreferrer"
-              class="footer__social" aria-label="Instagram">
+            <a href="https://www.instagram.com/nexo/" target="_blank" rel="noopener noreferrer" class="footer__social"
+              aria-label="Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" aria-hidden="true">
                 <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -433,28 +444,14 @@
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
-            <a href="https://www.facebook.com/nexo" target="_blank" rel="noopener noreferrer"
-              class="footer__social" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-              </svg>
-            </a>
-            <a href="https://twitter.com/nexo" target="_blank" rel="noopener noreferrer" class="footer__social"
-              aria-label="X / Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.738l7.737-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
           </div>
         </div>
         <nav class="footer__col" aria-label="Servicios">
           <h5>Servicios</h5>
           <ul>
-            <li><a href="contactanos.html?servicio=corporate">NEXO Corporate</a></li>
-            <li><a href="contactanos.html?servicio=mice">NEXO MICE</a></li>
-            <li><a href="contactanos.html?servicio=sport">NEXO Sport</a></li>
+            <li><a href="index.html#servicios">NEXO Corporate</a></li>
+            <li><a href="index.html#servicios">NEXO MICE</a></li>
+            <li><a href="index.html#servicios">NEXO Sport</a></li>
           </ul>
         </nav>
         <nav class="footer__col" aria-label="Empresa">
@@ -462,10 +459,7 @@
           <ul>
             <li><a href="index.html#nosotros">Así somos</a></li>
             <li><a href="medios.html">Medios</a></li>
-            <li><a href="https://nexo.com/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso legal</a>
-            </li>
-            <li><a href="https://nexo.com/politica-de-privacidad/" target="_blank"
-                rel="noopener noreferrer">Privacidad</a></li>
+            <li><a href="contactanos.html">Autodiagnóstico</a></li>
           </ul>
         </nav>
         <div class="footer__col">
@@ -480,22 +474,19 @@
       <div class="footer__bottom">
         <p>© 2025 NEXO Travel Group. Todos los derechos reservados.</p>
         <div class="footer__legal">
-          <a href="https://nexo.com/politica-de-privacidad/" target="_blank"
-            rel="noopener noreferrer">Privacidad</a>
+          <a href="https://nexo.com/politica-de-privacidad/" target="_blank" rel="noopener noreferrer">Privacidad</a>
           <a href="https://nexo.com/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso legal</a>
-          <a href="https://nexo.com/proteccion-de-datos/" target="_blank" rel="noopener noreferrer">Protección de
-            datos</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Visual & Growth Copyright Watermark -->
   <div class="watermark" aria-hidden="true">
     <img src="img/vg-watermark.png" alt="Visual &amp; Growth" title="Diseñado por Visual &amp; Growth">
   </div>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=2" defer></script>
+  <script src="js/diagnostico.js?v=2" defer></script>
 </body>
 
 </html>

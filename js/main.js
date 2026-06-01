@@ -18,6 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!canvas || !loader) return
 
+    // Intro (globo + logo) solo la primera vez que se abre la web
+    try {
+      if (localStorage.getItem('nexo_intro_seen')) {
+        loader.style.display = 'none'
+        document.body.style.overflow = ''
+        return
+      }
+      localStorage.setItem('nexo_intro_seen', '1')
+    } catch (e) { /* localStorage no disponible: mostrar intro igualmente */ }
+
     // Lock scroll initially
     document.body.style.overflow = 'hidden'
 
