@@ -27,49 +27,148 @@ document.addEventListener('DOMContentLoaded', () => {
     let siteRevealed = false
 
     const onResize = () => {
-      width = canvas.offsetWidth
+      width = canvas.offsetWidth || (globeWrap && globeWrap.offsetWidth) || 480
     }
     window.addEventListener('resize', onResize)
     onResize()
 
-    // Config based on user request (MagicUI/Cobe)
-    const GLOBE_CONFIG = {
-      width: width * 2,
-      height: width * 2,
-      onRender: (state) => {
-        state.phi = phi
-        phi += 0.005
-        state.width = width * 2
-        state.height = width * 2
-      },
-      devicePixelRatio: 2,
-      phi: 0,
-      theta: 0.3,
-      dark: 1,
-      diffuse: 1.2,
-      mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.1, 0.8, 1],
-      glowColor: [1, 1, 1],
-      markers: [
-        { location: [40.4168, -3.7038], size: 0.05 }, // Madrid
-        { location: [40.7128, -74.006], size: 0.07 }, // NY
-        { location: [35.6762, 139.6503], size: 0.07 }, // Tokyo
-        { location: [-23.5505, -46.6333], size: 0.07 }, // Sao Paulo
-        { location: [25.2048, 55.2708], size: 0.07 }, // Dubai
-      ],
+    // ── Custom Canvas globe — self-contained, always renders ──
+    // A rotating point-cloud sphere with glowing city nodes and animated
+    // "nexus" connection arcs. Represents NEXO connecting the world.
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const ctx = canvas.getContext('2d')
+    const TEAL = [16, 200, 185]
+
+    // Fibonacci sphere — evenly distributed dots that read as a 3D globe
+    const N_DOTS = 760
+    const GA = Math.PI * (3 - Math.sqrt(5))
+    const dots = []
+    for (let i = 0; i < N_DOTS; i++) {
+      const y = 1 - (i / (N_DOTS - 1)) * 2
+      const r = Math.sqrt(Math.max(0, 1 - y * y))
+      const th = i * GA
+      dots.push([Math.cos(th) * r, y, Math.sin(th) * r])
+    }
+
+    const toVec = (lat, lon) => {
+      const la = lat * Math.PI / 180, lo = lon * Math.PI / 180
+      return [Math.cos(la) * Math.cos(lo), Math.sin(la), Math.cos(la) * Math.sin(lo)]
+    }
+    const CITIES = [
+      [40.4168, -3.7038],  // Madrid
+      [48.8566, 2.3522],   // Paris
+      [51.5074, -0.1278],  // London
+      [40.7128, -74.006],  // New York
+      [35.6762, 139.6503], // Tokyo
+      [25.2048, 55.2708],  // Dubai
+    ].map(c => toVec(c[0], c[1]))
+    const LINKS = [[0, 1], [0, 2], [0, 3], [1, 4], [2, 3], [3, 5], [1, 5]]
+
+    const TILT = -0.42, cosT = Math.cos(TILT), sinT = Math.sin(TILT)
+
+    const project = (p, cx, cy, R) => {
+      const cp = Math.cos(phi), sp = Math.sin(phi)
+      const x = p[0] * cp + p[2] * sp
+      const z = -p[0] * sp + p[2] * cp
+      const y = p[1]
+      const y2 = y * cosT - z * sinT
+      const z2 = y * sinT + z * cosT
+      const persp = 1 / (1 - z2 * 0.16)
+      return { x: cx + x * R * persp, y: cy - y2 * R * persp, z: z2 }
+    }
+
+    const slerp = (a, b, t) => {
+      let d = a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
+      d = Math.max(-1, Math.min(1, d))
+      const om = Math.acos(d)
+      if (om < 1e-4) return a.slice()
+      const s = Math.sin(om), k0 = Math.sin((1 - t) * om) / s, k1 = Math.sin(t * om) / s
+      return [a[0] * k0 + b[0] * k1, a[1] * k0 + b[1] * k1, a[2] * k0 + b[2] * k1]
+    }
+
+    let raf = 0
+    const t0 = performance.now()
+    const draw = (now) => {
+      const W = canvas.width, H = canvas.height
+      const cx = W / 2, cy = H / 2
+      const R = Math.min(W, H) * 0.40
+      const tt = (now - t0) / 1000
+      ctx.clearRect(0, 0, W, H)
+
+      // atmosphere
+      const glow = ctx.createRadialGradient(cx, cy, R * 0.55, cx, cy, R * 1.2)
+      glow.addColorStop(0, 'rgba(16,200,185,0.12)')
+      glow.addColorStop(1, 'rgba(16,200,185,0)')
+      ctx.fillStyle = glow
+      ctx.beginPath(); ctx.arc(cx, cy, R * 1.2, 0, Math.PI * 2); ctx.fill()
+
+      // dotted sphere (depth-shaded)
+      for (let i = 0; i < dots.length; i++) {
+        const q = project(dots[i], cx, cy, R)
+        const front = (q.z + 1) / 2
+        ctx.fillStyle = `rgba(${TEAL[0]},${TEAL[1]},${TEAL[2]},${0.1 + front * 0.6})`
+        ctx.beginPath(); ctx.arc(q.x, q.y, (0.6 + front * 1.5) * dpr, 0, Math.PI * 2); ctx.fill()
+      }
+
+      // nexus arcs + travelling pulse
+      for (let l = 0; l < LINKS.length; l++) {
+        const a = CITIES[LINKS[l][0]], b = CITIES[LINKS[l][1]]
+        ctx.beginPath()
+        const SEG = 48
+        for (let s = 0; s <= SEG; s++) {
+          const t = s / SEG
+          const m = slerp(a, b, t)
+          const lift = 1 + 0.32 * Math.sin(Math.PI * t)
+          const q = project([m[0] * lift, m[1] * lift, m[2] * lift], cx, cy, R)
+          s === 0 ? ctx.moveTo(q.x, q.y) : ctx.lineTo(q.x, q.y)
+        }
+        ctx.strokeStyle = 'rgba(16,200,185,0.30)'
+        ctx.lineWidth = 1.1 * dpr
+        ctx.stroke()
+        const tp = (tt * 0.32 + l * 0.14) % 1
+        const mp = slerp(a, b, tp)
+        const lp = 1 + 0.32 * Math.sin(Math.PI * tp)
+        const qp = project([mp[0] * lp, mp[1] * lp, mp[2] * lp], cx, cy, R)
+        ctx.fillStyle = 'rgba(150,255,245,0.95)'
+        ctx.beginPath(); ctx.arc(qp.x, qp.y, 2.1 * dpr, 0, Math.PI * 2); ctx.fill()
+      }
+
+      // glowing city nodes
+      for (let i = 0; i < CITIES.length; i++) {
+        const q = project(CITIES[i], cx, cy, R)
+        if (q.z < -0.2) continue
+        const front = (q.z + 1) / 2
+        const pulse = 0.6 + 0.4 * Math.sin(tt * 2 + i)
+        const baseR = (2.4 + front * 1.6) * dpr
+        ctx.fillStyle = `rgba(16,200,185,${0.16 * pulse})`
+        ctx.beginPath(); ctx.arc(q.x, q.y, baseR * 3.4, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = `rgba(205,255,250,${0.7 + front * 0.3})`
+        ctx.beginPath(); ctx.arc(q.x, q.y, baseR, 0, Math.PI * 2); ctx.fill()
+      }
+
+      phi += 0.0016
+      raf = requestAnimationFrame(draw)
+    }
+
+    const sizeCanvas = () => {
+      const cssW = canvas.offsetWidth || (globeWrap && globeWrap.offsetWidth) || 480
+      canvas.width = Math.round(cssW * dpr)
+      canvas.height = Math.round(cssW * dpr)
     }
 
     let globe;
 
     const startGlobe = () => {
-      globe = window.createGlobe(canvas, GLOBE_CONFIG)
-
-      // Fade in symbols
-      setTimeout(() => {
-        canvas.style.opacity = '1'
-      }, 500)
+      sizeCanvas()
+      window.addEventListener('resize', sizeCanvas)
+      raf = requestAnimationFrame(draw)
+      globe = {
+        destroy: () => {
+          cancelAnimationFrame(raf)
+          window.removeEventListener('resize', sizeCanvas)
+        },
+      }
+      setTimeout(() => { canvas.style.opacity = '1' }, 300)
     }
 
     // Step 1: Fade out globe and logo simultaneously, then show CTA
@@ -155,17 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
       globeWrap.addEventListener('click', fadeGlobeShowCTA)
     }
 
-    // Initialization check
-    if (window.createGlobe) {
-      startGlobe()
-    } else {
-      const checkCobe = setInterval(() => {
-        if (window.createGlobe) {
-          clearInterval(checkCobe)
-          startGlobe()
-        }
-      }, 100)
-    }
+    // Start the custom globe immediately
+    startGlobe()
   }
 
   initLoader()
