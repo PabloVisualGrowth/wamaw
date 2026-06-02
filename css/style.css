@@ -480,7 +480,7 @@ p {
   max-width: 1160px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 80px;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -488,7 +488,7 @@ p {
 }
 
 .nav__logo img {
-  height: 56px;
+  height: 64px;
   width: auto;
   filter: none;
   transition: filter var(--transition);
@@ -644,7 +644,7 @@ p {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 80px;
+  padding-top: 100px;
   text-align: left;
 }
 
